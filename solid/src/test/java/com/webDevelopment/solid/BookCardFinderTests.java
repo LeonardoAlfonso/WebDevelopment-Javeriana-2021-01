@@ -2,6 +2,7 @@ package com.webDevelopment.solid;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.webDevelopment.solid.services.RaleyEmailSender;
 import com.webDevelopment.solid.services.HTMLFormatter;
 import com.webDevelopment.solid.services.JsonFormatter;
 import com.webDevelopment.solid.services.XMLFormatter;
@@ -18,30 +19,33 @@ public class BookCardFinderTests{
     @BeforeEach
     public void setUp()
     {
-        bookCardFinder = new BookCardFinder();
+//        bookCardFinder = new BookCardFinder();
     }
 
     @Test
     public void bookCardInHTMLFormatTest()
     {
+        bookCardFinder = new BookCardFinder(new HTMLFormatter(), new RaleyEmailSender());
         String expected = "<p>The book 1984 has benn written by George Orwell and was " +
                 "published in 1949. The book's price is 20.0</p>";
-        assertEquals(expected, bookCardFinder.execute(new HTMLFormatter()));
+        assertEquals(expected, bookCardFinder.execute());
     }
 
     @Test
     public void bookCardInXMLFormatTest()
     {
+        bookCardFinder = new BookCardFinder(new XMLFormatter(), new RaleyEmailSender());
         String expected = "<element att='bookCard'>The book 1984 has benn written by George Orwell and was " +
                 "published in 1949. The book's price is 20.0</element>";
-        assertEquals(expected, bookCardFinder.execute(new XMLFormatter()));
+        assertEquals(expected, bookCardFinder.execute());
     }
 
     @Test
     public void bookCardInJSONFormatTest()
     {
+        bookCardFinder = new BookCardFinder(new JsonFormatter(), new RaleyEmailSender());
         String expected = "{ 'bookCard' : 'The book 1984 has benn written by George Orwell and was " +
                 "published in 1949. The book's price is 20.0' }";
-        assertEquals(expected, bookCardFinder.execute(new JsonFormatter()));
+        assertEquals(expected, bookCardFinder.execute());
     }
 }
