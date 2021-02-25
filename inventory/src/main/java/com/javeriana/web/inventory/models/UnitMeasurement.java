@@ -1,13 +1,36 @@
 package com.javeriana.web.inventory.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
+@Table(name = "MeasurementUnits")
 public class UnitMeasurement {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idUnit")
     private long id;
+
+    @Column(name = "name", length = 200, nullable = false)
     private String name;
+
+    @Column(name = "initial", length = 20, nullable = false)
     private String initial;
+
+    @Column(name = "enabled", nullable = false)
     private boolean enabled;
 
-    public UnitMeasurement(long id, String name, String initial, boolean enabled) {
+    @OneToMany(mappedBy = "unitMeasurement")
+    @JsonIgnoreProperties("unitMeasurement")
+    private List<Product> products;
+
+    public UnitMeasurement(){
+    }
+
+    public UnitMeasurement(String name, String initial, boolean enabled) {
         this.id = id;
         this.name = name;
         this.initial = initial;
@@ -44,5 +67,13 @@ public class UnitMeasurement {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 }

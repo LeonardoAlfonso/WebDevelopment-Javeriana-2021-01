@@ -1,6 +1,0 @@
-spring.datasource.url=jdbc:mariadb://URL:Port/Schema
-spring.datasource.username=user
-spring.datasource.password=pass
-spring.datasource.driver-class-name=org.mariadb.jdbc.Driver
-spring.jpa.hibernate.ddl-auto=validate
-spring.jpa.properties.hibernate.physical_naming_strategy=org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
