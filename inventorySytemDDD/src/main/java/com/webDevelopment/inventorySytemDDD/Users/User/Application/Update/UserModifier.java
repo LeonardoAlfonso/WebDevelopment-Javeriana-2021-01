@@ -16,8 +16,8 @@ public class UserModifier {
         this.finder = new UserDomainFinder(repository);
     }
 
-    public User execute(String userId, User user) {
+    public void execute(String userId, User user) {
         Optional<User> actualUser = finder.execute(userId);
-        return repository.update(userId, user);
+        repository.update(userId, user);
     }
 }

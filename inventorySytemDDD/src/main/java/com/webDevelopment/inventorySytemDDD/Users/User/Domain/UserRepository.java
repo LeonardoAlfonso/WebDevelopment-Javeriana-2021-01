@@ -8,5 +8,5 @@ public interface UserRepository {
 
     Optional<User> find(String userId);
 
-    User update(String userId, User user);
+    void update(String userId, User user);
 }

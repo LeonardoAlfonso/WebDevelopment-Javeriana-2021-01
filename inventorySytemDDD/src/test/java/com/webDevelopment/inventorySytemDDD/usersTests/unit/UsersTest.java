@@ -32,8 +32,10 @@ public class UsersTest {
     @Test
     void should_find_user() {
         User user = new User("some-1234", "Pinocho", "Ni idea", "PinochoMaderita", "maderita123");
+
         UserRepository repository = mock(UserRepository.class);
         Mockito.when(repository.find("some-1234")).thenReturn(Optional.of(user));
+
         UserFinder finder = new UserFinder(repository);
 
         assertEquals(user, finder.execute("some-1234"));
@@ -43,12 +45,17 @@ public class UsersTest {
     void should_update_user() {
         User user = new User("some-1234", "Pinocho", "Ni idea", "PinochoMaderita", "maderita123");
         User userEdited = new User("some-1234", "Caperucita", "Ni idea", "PinochoMaderita", "maderita123");
+
         UserRepository repository = mock(UserRepository.class);
         Mockito.when(repository.find("some-1234")).thenReturn(Optional.of(user));
-        Mockito.when(repository.update("some-1234", userEdited)).thenReturn(userEdited);
+//        Mockito.when(repository.update("some-1234", userEdited)).thenReturn(userEdited);
+
         UserModifier modifier = new UserModifier(repository);
 
-        assertEquals(userEdited, modifier.execute("some-7894", userEdited));
+        modifier.execute("some-1234", userEdited);
+
+        verify(repository, atLeastOnce()).update("some-1234", userEdited);
+//        assertEquals(userEdited, modifier.execute("some-7894", userEdited));
     }
 
 }
