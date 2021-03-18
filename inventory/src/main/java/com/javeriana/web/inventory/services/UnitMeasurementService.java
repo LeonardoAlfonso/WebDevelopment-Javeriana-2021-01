@@ -8,7 +8,7 @@ import java.util.List;
 @Service
 public interface UnitMeasurementService {
 
-    public long addUnitMeasurement(UnitMeasurement unitMeasurement) throws Exception;
+    public UnitMeasurement addUnitMeasurement(UnitMeasurement unitMeasurement) throws Exception;
     public UnitMeasurement getUnitMeasurement(long id) throws Exception;
     public void updateUnitMeasurement(UnitMeasurement unitMeasurement, long id) throws Exception;
     public void deleteUnitMeasurement(long id) throws Exception;

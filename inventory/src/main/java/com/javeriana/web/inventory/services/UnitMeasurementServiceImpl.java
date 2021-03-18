@@ -1,51 +1,46 @@
 package com.javeriana.web.inventory.services;
 
 import com.javeriana.web.inventory.models.UnitMeasurement;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import static com.javeriana.web.inventory.InventoryApplication.LOGGER;
 
 @Service
 public class UnitMeasurementServiceImpl implements UnitMeasurementService {
 
-    private List<UnitMeasurement> units;
+    private UnitMeasurementRepository repository;
 
-    public UnitMeasurementServiceImpl() {
-        this.units = new ArrayList<UnitMeasurement>();
-        UnitMeasurement unit = new UnitMeasurement(1, "Unidad", "U", true);
-        this.units.add(unit);
-        unit = new UnitMeasurement(2, "Docena", "D", true);
-        this.units.add(unit);
-        unit = new UnitMeasurement(3, "Caja", "C", true);
-        this.units.add(unit);
+    @Autowired
+    public UnitMeasurementServiceImpl(UnitMeasurementRepository repository) {
+        this.repository = repository;
     }
 
     @Override
-    public long addUnitMeasurement(UnitMeasurement unitMeasurement) throws Exception {
-        if(this.validateId(unitMeasurement)) {
-            this.units.add(unitMeasurement);
+    public UnitMeasurement addUnitMeasurement(UnitMeasurement unitMeasurement) throws Exception {
+        try {
+            unitMeasurement = this.repository.save(unitMeasurement);
         }
-        else {
-            throw new Exception("UnitMeasurementService.addUnitMeasurement Causa: Id ya existe.");
+        catch (Exception e) {
+            LOGGER.error("UnitMeasurementServiceImpl.addUnitMeasurement Causa: " + e.toString());
+            throw new Exception("UnitMeasurementServiceImpl.addUnitMeasurement Causa: " + e.toString());
         }
-        return unitMeasurement.getId();
-    }
-
-    private boolean validateId(UnitMeasurement unitMeasurement) {
-        boolean exist = true;
-        for(int i=0; i<this.units.size(); i++) {
-            if(this.units.get(i).getId() == unitMeasurement.getId()) {
-                exist = false;
-                i = this.units.size();
-            }
-        }
-        return exist;
+        return unitMeasurement;
     }
 
     @Override
     public UnitMeasurement getUnitMeasurement(long id) throws Exception{
-        return null;
+        UnitMeasurement unitMeasurement = null;
+        try {
+            unitMeasurement = this.repository.findById(id).get();
+        }
+        catch (Exception e) {
+            LOGGER.error("UnitMeasurementServiceImpl.getUnitMeasurement Causa: " + e.toString());
+            throw new Exception("UnitMeasurementServiceImpl.getUnitMeasurement Causa: " + e.toString());
+        }
+        return unitMeasurement;
     }
 
     @Override
@@ -60,6 +55,14 @@ public class UnitMeasurementServiceImpl implements UnitMeasurementService {
 
     @Override
     public List<UnitMeasurement> getAllUnitMeasurement() throws Exception{
-        return this.units;
+        List<UnitMeasurement> measurementsUnits = null;
+        try {
+            measurementsUnits = this.repository.findAll();
+        }
+        catch (Exception e) {
+            LOGGER.error("UnitMeasurementServiceImpl.getAllUnitMeasurement Causa: " + e.toString());
+            throw new Exception("UnitMeasurementServiceImpl.getAllUnitMeasurement Causa: " + e.toString());
+        }
+        return measurementsUnits;
     }
 }

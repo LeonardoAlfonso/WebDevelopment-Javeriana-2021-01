@@ -1,12 +1,33 @@
 package com.javeriana.web.inventory.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "Products")
 public class Product {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idProduct")
     private long id;
+
+    @Column(name = "name", length = 200, nullable = false)
     private String name;
+
+    @Column(name = "category", length = 200, nullable = false)
     private String category;
+
+    @ManyToOne
+    @JoinColumn(name = "idUnit")
+    @JsonIgnoreProperties("products")
     private UnitMeasurement unitMeasurement;
+
+    @Column(name = "enabled", nullable = false)
     private boolean enabled;
+
+    public Product() {}
 
     public Product(long id, String name, String category, UnitMeasurement unitMeasurement, boolean enabled) {
         this.id = id;
