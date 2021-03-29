@@ -2,9 +2,9 @@ package com.webDevelopment.inventorySytemDDD.Users.User.Domain;
 
 import com.webDevelopment.inventorySytemDDD.Users.Shared.Domain.StringValueObject;
 
-public class UserName extends StringValueObject
+public class UserLastName extends StringValueObject
 {
-    public UserName(String value) {
+    public UserLastName(String value) {
         this.validate(value);
         this.value = value;
     }

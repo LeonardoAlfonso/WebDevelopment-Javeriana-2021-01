@@ -2,9 +2,9 @@ package com.webDevelopment.inventorySytemDDD.Users.User.Domain;
 
 import com.webDevelopment.inventorySytemDDD.Users.Shared.Domain.StringValueObject;
 
-public class UserName extends StringValueObject
+public class UserNickName extends StringValueObject
 {
-    public UserName(String value) {
+    public UserNickName(String value) {
         this.validate(value);
         this.value = value;
     }
@@ -15,7 +15,7 @@ public class UserName extends StringValueObject
     }
 
     private void lenghtRule(String value) {
-        if (value.length() < 3) {
+        if (value.length() < 8) {
             throw new LengthNotValid("Number of characters invalid");
         }
     }

@@ -6,11 +6,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import com.webDevelopment.inventorySytemDDD.Users.User.Application.Create.UserCreator;
 import com.webDevelopment.inventorySytemDDD.Users.User.Application.Find.UserFinder;
 import com.webDevelopment.inventorySytemDDD.Users.User.Application.Update.UserModifier;
-import com.webDevelopment.inventorySytemDDD.Users.User.Domain.User;
-import com.webDevelopment.inventorySytemDDD.Users.User.Domain.UserRepository;
+import com.webDevelopment.inventorySytemDDD.Users.User.Domain.*;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
+
 
 import java.util.Optional;
 
@@ -20,42 +20,49 @@ public class UsersTest {
     @Test
     void should_create_user() {
         UserRepository repository = mock(UserRepository.class);
-        UserCreator creator = new UserCreator(repository);
+        ValidateWordService service = mock(ValidateWordService.class);
+        Mockito.when(service.validate("PinochoMaderita")).thenReturn(false);
 
-        User actualUser = new User("some-1234", "Pinocho", "Ni idea", "PinochoMaderita", "maderita123");
+        UserCreator creator = new UserCreator(repository, service);
 
-        creator.execute("some-1234", "Pinocho", "Ni idea", "PinochoMaderita", "maderita123");
+        User actualUser = new User(new UserId("bb5f8ac3-b90d-40ec-b3e2-e0ca3f432721"), new UserName("Pinocho"), new UserLastName("Ni idea"),
+                                    new UserNickName("PinochoMaderita"), new UserPassword("MaderiTa1*23"));
+
+        creator.execute("bb5f8ac3-b90d-40ec-b3e2-e0ca3f432721", "Pinocho", "Ni idea", "PinochoMaderita",                                       "MaderiTa1*23");
 
         verify(repository, atLeastOnce()).save(actualUser);
     }
 
     @Test
     void should_find_user() {
-        User user = new User("some-1234", "Pinocho", "Ni idea", "PinochoMaderita", "maderita123");
+        User user = new User(new UserId("bb5f8ac3-b90d-40ec-b3e2-e0ca3f432721"), new UserName("Pinocho"), new UserLastName("Ni idea"),
+                new UserNickName("PinochoMaderita"), new UserPassword("MaderiTa1*23"));
 
         UserRepository repository = mock(UserRepository.class);
-        Mockito.when(repository.find("some-1234")).thenReturn(Optional.of(user));
+        Mockito.when(repository.find("bb5f8ac3-b90d-40ec-b3e2-e0ca3f432721")).thenReturn(Optional.of(user));
 
         UserFinder finder = new UserFinder(repository);
 
-        assertEquals(user, finder.execute("some-1234"));
+        assertEquals(user, finder.execute("bb5f8ac3-b90d-40ec-b3e2-e0ca3f432721"));
     }
 
     @Test
     void should_update_user() {
-        User user = new User("some-1234", "Pinocho", "Ni idea", "PinochoMaderita", "maderita123");
-        User userEdited = new User("some-1234", "Caperucita", "Ni idea", "PinochoMaderita", "maderita123");
+        User user = new User(new UserId("bb5f8ac3-b90d-40ec-b3e2-e0ca3f432721"),  new UserName("Pinocho"), new UserLastName("Ni idea"),
+                             new UserNickName("PinochoMaderita"), new UserPassword("MaderiTa1*23"));
+        User userEdited = new User(new UserId("bb5f8ac3-b90d-40ec-b3e2-e0ca3f432721"), new UserName("Caperucita"), new UserLastName("Ni idea2"),
+                                   new UserNickName("CaperucitaCapa"), new UserPassword("MaderiTa1*23"));
 
         UserRepository repository = mock(UserRepository.class);
-        Mockito.when(repository.find("some-1234")).thenReturn(Optional.of(user));
-//        Mockito.when(repository.update("some-1234", userEdited)).thenReturn(userEdited);
+        ValidateWordService service = mock(ValidateWordService.class);
+        Mockito.when(repository.find("bb5f8ac3-b90d-40ec-b3e2-e0ca3f432721")).thenReturn(Optional.of(user));
+        Mockito.when(service.validate("CaperucitaCapa")).thenReturn(false);
 
-        UserModifier modifier = new UserModifier(repository);
+        UserModifier modifier = new UserModifier(repository, service);
 
-        modifier.execute("some-1234", userEdited);
+        modifier.execute("bb5f8ac3-b90d-40ec-b3e2-e0ca3f432721", "Caperucita", "Ni idea2", "CaperucitaCapa");
 
-        verify(repository, atLeastOnce()).update("some-1234", userEdited);
-//        assertEquals(userEdited, modifier.execute("some-7894", userEdited));
+        verify(repository, atLeastOnce()).update("bb5f8ac3-b90d-40ec-b3e2-e0ca3f432721", userEdited);
     }
 
 }

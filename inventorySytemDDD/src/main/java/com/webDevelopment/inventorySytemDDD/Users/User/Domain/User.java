@@ -4,19 +4,28 @@ import java.util.Objects;
 
 public class User {
 
-    private String userId;
-    private String userFirstName;
-    private String userLastName;
-    private String userNickName;
-    private String userPassword;
+    private UserId userId;
+    private UserName userFirstName;
+    private UserLastName userLastName;
+    private UserNickName userNickName;
+    private UserPassword userPassword;
 
-    public User(String userId, String userFirstName, String userLastName, String userNickName, String userPassword) {
+    public User(UserId userId, UserName userFirstName, UserLastName userLastName, UserNickName userNickName, UserPassword userPassword) {
         this.userId = userId;
         this.userFirstName = userFirstName;
         this.userLastName = userLastName;
         this.userNickName = userNickName;
         this.userPassword = userPassword;
     }
+
+    public void updateUser(UserName userFirstName, UserLastName userLastName, UserNickName userNickName)
+    {
+        this.userFirstName = userFirstName;
+        this.userLastName = userLastName;
+        this.userNickName = userNickName;
+    }
+
+
 
     @Override
     public boolean equals(Object o) {
