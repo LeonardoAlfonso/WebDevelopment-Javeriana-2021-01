@@ -16,6 +16,10 @@ public class CustomUUID {
         this.validateUUIDFormatRule(value);
     }
 
+    public String value() {
+        return value;
+    }
+
     private void validateUUIDFormatRule(String value)
     {
         try {

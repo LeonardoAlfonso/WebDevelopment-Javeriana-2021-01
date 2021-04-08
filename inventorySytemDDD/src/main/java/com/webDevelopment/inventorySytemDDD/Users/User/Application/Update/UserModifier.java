@@ -20,7 +20,7 @@ public class UserModifier {
 
     public void execute(String userId, String userFirstName, String userLastName, String userNickName)
     {
-        validator.execute(userNickName);
+        validator.execute(new UserNickName(userNickName).value());
         Optional<User> actualUser = finder.execute(userId);
         User oldUser = actualUser.get();
         oldUser.updateUser(new UserName(userFirstName), new UserLastName(userLastName), new UserNickName(userNickName));

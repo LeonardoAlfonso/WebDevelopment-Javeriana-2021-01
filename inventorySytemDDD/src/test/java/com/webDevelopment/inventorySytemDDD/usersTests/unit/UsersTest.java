@@ -64,5 +64,4 @@ public class UsersTest {
 
         verify(repository, atLeastOnce()).update("bb5f8ac3-b90d-40ec-b3e2-e0ca3f432721", userEdited);
     }
-
 }

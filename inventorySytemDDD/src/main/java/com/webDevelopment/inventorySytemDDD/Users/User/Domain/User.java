@@ -1,5 +1,6 @@
 package com.webDevelopment.inventorySytemDDD.Users.User.Domain;
 
+import java.util.HashMap;
 import java.util.Objects;
 
 public class User {
@@ -25,7 +26,21 @@ public class User {
         this.userNickName = userNickName;
     }
 
+    public boolean equalsById(String otherId)
+    {
+        return this.userId.equals(new UserId(otherId));
+    }
 
+    public HashMap<String, String> data()
+    {
+        HashMap<String, String> data = new HashMap<String, String>() {{
+            put("id", userId.value());
+            put("name", userFirstName.value());
+            put("lastname", userLastName.value());
+            put("nickname", userNickName.value());
+        }};
+        return data;
+    }
 
     @Override
     public boolean equals(Object o) {

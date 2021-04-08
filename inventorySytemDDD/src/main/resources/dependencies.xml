@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="MemoryRepository" class="com.webDevelopment.inventorySytemDDD.Users.User.Infrastructure.InMemoryUserRepository"/>
+
+    <bean id="BadWordService" class="com.webDevelopment.inventorySytemDDD.Users.User.Infrastructure.BadWordsService"/>
+
+    <bean id="UserFinder" class="com.webDevelopment.inventorySytemDDD.Users.User.Application.Find.UserFinder">
+        <constructor-arg ref="MemoryRepository"/>
+    </bean>
+
+    <bean id="UserCreator" class="com.webDevelopment.inventorySytemDDD.Users.User.Application.Create.UserCreator">
+        <constructor-arg ref="MemoryRepository"/>
+        <constructor-arg ref="BadWordService"/>
+    </bean>
+
+</beans>

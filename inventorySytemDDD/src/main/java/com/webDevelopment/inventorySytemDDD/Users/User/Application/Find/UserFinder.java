@@ -1,9 +1,6 @@
 package com.webDevelopment.inventorySytemDDD.Users.User.Application.Find;
 
-import com.webDevelopment.inventorySytemDDD.Users.User.Domain.User;
-import com.webDevelopment.inventorySytemDDD.Users.User.Domain.UserDomainFinder;
-import com.webDevelopment.inventorySytemDDD.Users.User.Domain.UserNotExist;
-import com.webDevelopment.inventorySytemDDD.Users.User.Domain.UserRepository;
+import com.webDevelopment.inventorySytemDDD.Users.User.Domain.*;
 
 import java.util.Optional;
 
@@ -16,7 +13,7 @@ public class UserFinder {
     }
 
     public User execute(String userId) {
-        Optional<User> user = finder.execute(userId);
+        Optional<User> user = finder.execute(new UserId(userId).value());
         return user.get();
     }
 }
