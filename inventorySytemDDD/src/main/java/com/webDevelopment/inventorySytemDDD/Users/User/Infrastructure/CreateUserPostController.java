@@ -1,6 +1,6 @@
 package com.webDevelopment.inventorySytemDDD.Users.User.Infrastructure;
 
-import com.webDevelopment.inventorySytemDDD.Users.Shared.Domain.UUIDNotValid;
+import com.webDevelopment.inventorySytemDDD.Shared.Domain.UUIDNotValid;
 import com.webDevelopment.inventorySytemDDD.Users.User.Application.Create.UserCreator;
 import com.webDevelopment.inventorySytemDDD.Users.User.Domain.*;
 import org.springframework.beans.factory.annotation.Autowired;

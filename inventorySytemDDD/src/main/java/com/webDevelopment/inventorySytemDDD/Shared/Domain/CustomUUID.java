@@ -1,14 +1,15 @@
-package com.webDevelopment.inventorySytemDDD.Users.Shared.Domain;
+package com.webDevelopment.inventorySytemDDD.Shared.Domain;
 
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
 
-public class CustomUUID {
+public class CustomUUID implements Serializable {
 
     private String value;
 
     public CustomUUID(String value) {
-        this.validate(value);
+//        this.validate(value);
         this.value = value;
     }
 

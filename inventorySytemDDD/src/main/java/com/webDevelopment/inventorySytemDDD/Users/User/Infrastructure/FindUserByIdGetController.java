@@ -1,6 +1,6 @@
 package com.webDevelopment.inventorySytemDDD.Users.User.Infrastructure;
 
-import com.webDevelopment.inventorySytemDDD.Users.Shared.Domain.UUIDNotValid;
+import com.webDevelopment.inventorySytemDDD.Shared.Domain.UUIDNotValid;
 import com.webDevelopment.inventorySytemDDD.Users.User.Application.Find.UserFinder;
 import com.webDevelopment.inventorySytemDDD.Users.User.Application.Find.UserFinderResponse;
 import com.webDevelopment.inventorySytemDDD.Users.User.Domain.UserNotExist;
@@ -28,8 +28,8 @@ public class FindUserByIdGetController
     @ExceptionHandler(UserNotExist.class)
     public ResponseEntity<HashMap> handleUserNotExist(UserNotExist exception)
     {
-        HashMap<String, String> response = new HashMap<String, String>() {{
-           put("error", exception.getMessage());
+        HashMap<String, String> response = new HashMap<>() {{
+            put("error", exception.getMessage());
         }};
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
@@ -37,7 +37,7 @@ public class FindUserByIdGetController
     @ExceptionHandler(UUIDNotValid.class)
     public ResponseEntity<HashMap> handleUUIDNotValid(UUIDNotValid exception)
     {
-        HashMap<String, String> response = new HashMap<String, String>() {{
+        HashMap<String, String> response = new HashMap<>() {{
             put("error", exception.getMessage());
         }};
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);

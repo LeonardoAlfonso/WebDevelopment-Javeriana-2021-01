@@ -1,4 +1,4 @@
-package com.webDevelopment.inventorySytemDDD.Users.Shared.Domain;
+package com.webDevelopment.inventorySytemDDD.Shared.Domain;
 
 import java.util.Objects;
 

@@ -7,6 +7,8 @@
 
     <bean id="BadWordService" class="com.webDevelopment.inventorySytemDDD.Users.User.Infrastructure.BadWordsService"/>
 
+    <bean id="HibernateProductRepository" class="com.webDevelopment.inventorySytemDDD.Products.Product.Infrastructure.hibernate.HibernateProductRepository"/>
+
     <bean id="UserFinder" class="com.webDevelopment.inventorySytemDDD.Users.User.Application.Find.UserFinder">
         <constructor-arg ref="MemoryRepository"/>
     </bean>
@@ -14,6 +16,19 @@
     <bean id="UserCreator" class="com.webDevelopment.inventorySytemDDD.Users.User.Application.Create.UserCreator">
         <constructor-arg ref="MemoryRepository"/>
         <constructor-arg ref="BadWordService"/>
+    </bean>
+
+    <bean id="UserUpdater" class="com.webDevelopment.inventorySytemDDD.Users.User.Application.Update.UserModifier">
+        <constructor-arg ref="MemoryRepository"/>
+        <constructor-arg ref="BadWordService"/>
+    </bean>
+
+    <bean id="ProductCreator" class="com.webDevelopment.inventorySytemDDD.Products.Product.Application.Create.ProductCreator">
+        <constructor-arg ref="HibernateProductRepository"/>
+    </bean>
+
+    <bean id="ProductFinder" class="com.webDevelopment.inventorySytemDDD.Products.Product.Application.Find.ProductFinder">
+        <constructor-arg ref="HibernateProductRepository"/>
     </bean>
 
 </beans>

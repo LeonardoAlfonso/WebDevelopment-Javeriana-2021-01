@@ -2,6 +2,8 @@ package com.webDevelopment.inventorySytemDDD.Users.User.Application.Create;
 
 import com.webDevelopment.inventorySytemDDD.Users.User.Domain.*;
 
+import java.util.Optional;
+
 public class UserCreator {
     private UserRepository repository;
     private ValidateWordService service;
@@ -19,7 +21,7 @@ public class UserCreator {
     {
         this.validate(userId);
         validator.execute(new UserNickName(userNickName).value());
-        User user = new User(new UserId(userId), new UserName(userFirstName), new UserLastName(userLastName) , new UserNickName(userNickName),                                                        new UserPassword(userPassword));
+        User user = new User(new UserId(userId), new UserName(userFirstName), new UserLastName(userLastName) , new UserNickName(userNickName),new UserPassword(userPassword));
         repository.save(user);
     }
 
@@ -28,7 +30,7 @@ public class UserCreator {
         try
         {
             this.finder.execute(UserId);
-            throw new UserAlreadyExists("The user with ID " + UserId + " already exist");
+
         }
         catch (UserNotExist exception) { }
     }

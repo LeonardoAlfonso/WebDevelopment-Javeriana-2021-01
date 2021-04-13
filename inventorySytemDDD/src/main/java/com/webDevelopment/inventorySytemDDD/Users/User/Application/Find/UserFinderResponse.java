@@ -1,6 +1,6 @@
 package com.webDevelopment.inventorySytemDDD.Users.User.Application.Find;
 
-import com.webDevelopment.inventorySytemDDD.Users.Shared.Application.Response;
+import com.webDevelopment.inventorySytemDDD.Shared.Application.Response;
 import com.webDevelopment.inventorySytemDDD.Users.User.Domain.User;
 
 import java.util.HashMap;
