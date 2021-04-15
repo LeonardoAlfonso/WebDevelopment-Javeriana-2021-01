@@ -2,6 +2,7 @@ package com.webDevelopment.inventorySytemDDD.Products.Product.Domain;
 
 import com.webDevelopment.inventorySytemDDD.Products.Product.Domain.ValueObjects.*;
 
+import java.util.HashMap;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -10,6 +11,11 @@ public class Product
     private ProductId productId;
     private ProductName productName;
     private ProductDescription productDescription;
+
+    public ProductTotalSales getProductTotalSales() {
+        return productTotalSales;
+    }
+
     private ProductTotalSales productTotalSales;
     private Optional<ProductColors> productColors;
 
@@ -48,6 +54,16 @@ public class Product
         return Objects.equals(productId, product.productId) &&
                 Objects.equals(productName, product.productName) &&
                 Objects.equals(productDescription, product.productDescription);
+    }
+
+    public HashMap<String, String> data()
+    {
+        HashMap<String, String> data = new HashMap<String, String>() {{
+            put("id", productId.value());
+            put("name", productName.value());
+            put("description", productDescription.value());
+        }};
+        return data;
     }
 
     private Product(){}

@@ -31,4 +31,8 @@
         <constructor-arg ref="HibernateProductRepository"/>
     </bean>
 
+    <bean id="ProductAll" class="com.webDevelopment.inventorySytemDDD.Products.Product.Application.All.ProductAll">
+        <constructor-arg ref="HibernateProductRepository"/>
+    </bean>
+
 </beans>
