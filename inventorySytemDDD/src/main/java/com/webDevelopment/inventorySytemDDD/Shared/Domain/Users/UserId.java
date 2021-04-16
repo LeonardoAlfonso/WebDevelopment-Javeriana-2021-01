@@ -1,4 +1,4 @@
-package com.webDevelopment.inventorySytemDDD.Users.User.Domain;
+package com.webDevelopment.inventorySytemDDD.Shared.Domain.Users;
 
 import com.webDevelopment.inventorySytemDDD.Shared.Domain.CustomUUID;
 

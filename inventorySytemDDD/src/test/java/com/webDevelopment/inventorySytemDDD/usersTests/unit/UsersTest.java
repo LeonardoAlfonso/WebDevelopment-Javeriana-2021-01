@@ -3,6 +3,7 @@ package com.webDevelopment.inventorySytemDDD.usersTests.unit;
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+import com.webDevelopment.inventorySytemDDD.Shared.Domain.Users.UserId;
 import com.webDevelopment.inventorySytemDDD.Users.User.Application.Create.UserCreator;
 import com.webDevelopment.inventorySytemDDD.Users.User.Application.Find.UserFinder;
 import com.webDevelopment.inventorySytemDDD.Users.User.Application.Update.UserModifier;

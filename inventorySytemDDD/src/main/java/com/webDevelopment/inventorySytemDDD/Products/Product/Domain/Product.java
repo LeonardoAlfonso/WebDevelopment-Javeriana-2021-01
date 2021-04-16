@@ -1,6 +1,7 @@
 package com.webDevelopment.inventorySytemDDD.Products.Product.Domain;
 
 import com.webDevelopment.inventorySytemDDD.Products.Product.Domain.ValueObjects.*;
+import com.webDevelopment.inventorySytemDDD.Shared.Domain.Products.ProductId;
 
 import java.util.HashMap;
 import java.util.Objects;

@@ -2,6 +2,8 @@ package com.webDevelopment.inventorySytemDDD.Products.ProductColor.Domain;
 
 import com.webDevelopment.inventorySytemDDD.Products.ProductColor.Domain.Exceptions.NotAvailableBalance;
 import com.webDevelopment.inventorySytemDDD.Products.ProductColor.Domain.ValueObjects.*;
+import com.webDevelopment.inventorySytemDDD.Shared.Domain.Products.ProductColorId;
+import com.webDevelopment.inventorySytemDDD.Shared.Domain.Products.ProductId;
 
 import java.util.Objects;
 

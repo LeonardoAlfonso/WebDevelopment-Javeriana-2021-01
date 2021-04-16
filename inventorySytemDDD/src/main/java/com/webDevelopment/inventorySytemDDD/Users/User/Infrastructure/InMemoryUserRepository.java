@@ -1,5 +1,6 @@
 package com.webDevelopment.inventorySytemDDD.Users.User.Infrastructure;
 
+import com.webDevelopment.inventorySytemDDD.Shared.Domain.Users.UserId;
 import com.webDevelopment.inventorySytemDDD.Users.User.Domain.*;
 
 import java.util.ArrayList;

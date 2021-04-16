@@ -1,4 +1,4 @@
-package com.webDevelopment.inventorySytemDDD.Products.Product.Domain.ValueObjects;
+package com.webDevelopment.inventorySytemDDD.Shared.Domain.Products;
 
 import com.webDevelopment.inventorySytemDDD.Shared.Domain.CustomUUID;
 

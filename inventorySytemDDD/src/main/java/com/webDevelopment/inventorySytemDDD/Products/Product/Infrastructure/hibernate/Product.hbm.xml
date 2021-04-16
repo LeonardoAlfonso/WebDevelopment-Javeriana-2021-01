@@ -5,7 +5,7 @@
 
 <hibernate-mapping>
     <class name="com.webDevelopment.inventorySytemDDD.Products.Product.Domain.Product" table="products">
-        <composite-id name="productId" class="com.webDevelopment.inventorySytemDDD.Products.Product.Domain.ValueObjects.ProductId" access="field">
+        <composite-id name="productId" class="com.webDevelopment.inventorySytemDDD.Shared.Domain.Products.ProductId" access="field">
             <key-property name="value" column="id" access="field" length="36"/>
         </composite-id>
         

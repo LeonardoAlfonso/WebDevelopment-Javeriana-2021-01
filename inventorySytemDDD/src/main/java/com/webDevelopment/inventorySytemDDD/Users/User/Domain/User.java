@@ -1,5 +1,7 @@
 package com.webDevelopment.inventorySytemDDD.Users.User.Domain;
 
+import com.webDevelopment.inventorySytemDDD.Shared.Domain.Users.UserId;
+
 import java.util.HashMap;
 import java.util.Objects;
 

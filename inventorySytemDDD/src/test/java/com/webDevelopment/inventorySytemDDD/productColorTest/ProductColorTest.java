@@ -1,12 +1,13 @@
 package com.webDevelopment.inventorySytemDDD.productColorTest;
 
 import static org.mockito.Mockito.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 import com.webDevelopment.inventorySytemDDD.Products.ProductColor.Application.UpdateQuantity.ProductColorUpdateQuantity;
 import com.webDevelopment.inventorySytemDDD.Products.ProductColor.Domain.Ports.ProductColorRepository;
 import com.webDevelopment.inventorySytemDDD.Products.ProductColor.Domain.ProductColor;
 import com.webDevelopment.inventorySytemDDD.Products.ProductColor.Domain.ValueObjects.*;
+import com.webDevelopment.inventorySytemDDD.Shared.Domain.Products.ProductColorId;
+import com.webDevelopment.inventorySytemDDD.Shared.Domain.Products.ProductId;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 

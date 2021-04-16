@@ -2,7 +2,7 @@ package com.webDevelopment.inventorySytemDDD.Products.Product.Application.Find;
 
 import com.webDevelopment.inventorySytemDDD.Products.Product.Domain.Ports.ProductRepository;
 import com.webDevelopment.inventorySytemDDD.Products.Product.Domain.Product;
-import com.webDevelopment.inventorySytemDDD.Products.Product.Domain.ValueObjects.ProductId;
+import com.webDevelopment.inventorySytemDDD.Shared.Domain.Products.ProductId;
 
 import java.util.Optional;
 

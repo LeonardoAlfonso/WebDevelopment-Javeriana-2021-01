@@ -1,19 +1,7 @@
 package com.webDevelopment.inventorySytemDDD.productTest.unit;
 
-import static org.mockito.Mockito.*;
-import static org.junit.jupiter.api.Assertions.*;
-
-import com.webDevelopment.inventorySytemDDD.Products.Product.Application.AddBalance.ProductBalanceAdder;
-import com.webDevelopment.inventorySytemDDD.Products.Product.Domain.Ports.ProductRepository;
-import com.webDevelopment.inventorySytemDDD.Products.Product.Domain.Product;
-import com.webDevelopment.inventorySytemDDD.Products.Product.Domain.ValueObjects.ProductId;
-import com.webDevelopment.inventorySytemDDD.Products.Product.Domain.ValueObjects.ProductName;
-import com.webDevelopment.inventorySytemDDD.Products.Product.Domain.ValueObjects.ProductTotalSales;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.Optional;
 
 @SpringBootTest
 public class ProductTest {

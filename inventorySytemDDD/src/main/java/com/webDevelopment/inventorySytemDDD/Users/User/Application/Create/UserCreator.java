@@ -1,8 +1,7 @@
 package com.webDevelopment.inventorySytemDDD.Users.User.Application.Create;
 
+import com.webDevelopment.inventorySytemDDD.Shared.Domain.Users.UserId;
 import com.webDevelopment.inventorySytemDDD.Users.User.Domain.*;
-
-import java.util.Optional;
 
 public class UserCreator {
     private UserRepository repository;

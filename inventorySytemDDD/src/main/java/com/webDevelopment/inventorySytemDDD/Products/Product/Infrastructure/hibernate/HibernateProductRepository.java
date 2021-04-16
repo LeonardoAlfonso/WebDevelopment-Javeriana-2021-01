@@ -2,7 +2,7 @@ package com.webDevelopment.inventorySytemDDD.Products.Product.Infrastructure.hib
 
 import com.webDevelopment.inventorySytemDDD.Products.Product.Domain.Ports.ProductRepository;
 import com.webDevelopment.inventorySytemDDD.Products.Product.Domain.Product;
-import com.webDevelopment.inventorySytemDDD.Products.Product.Domain.ValueObjects.ProductId;
+import com.webDevelopment.inventorySytemDDD.Shared.Domain.Products.ProductId;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Qualifier;

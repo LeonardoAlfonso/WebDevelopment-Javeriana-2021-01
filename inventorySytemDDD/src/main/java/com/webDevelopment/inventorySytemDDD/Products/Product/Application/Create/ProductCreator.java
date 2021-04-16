@@ -3,7 +3,7 @@ package com.webDevelopment.inventorySytemDDD.Products.Product.Application.Create
 import com.webDevelopment.inventorySytemDDD.Products.Product.Domain.Ports.ProductRepository;
 import com.webDevelopment.inventorySytemDDD.Products.Product.Domain.Product;
 import com.webDevelopment.inventorySytemDDD.Products.Product.Domain.ValueObjects.ProductDescription;
-import com.webDevelopment.inventorySytemDDD.Products.Product.Domain.ValueObjects.ProductId;
+import com.webDevelopment.inventorySytemDDD.Shared.Domain.Products.ProductId;
 import com.webDevelopment.inventorySytemDDD.Products.Product.Domain.ValueObjects.ProductName;
 import com.webDevelopment.inventorySytemDDD.Products.Product.Domain.ValueObjects.ProductTotalSales;
 
