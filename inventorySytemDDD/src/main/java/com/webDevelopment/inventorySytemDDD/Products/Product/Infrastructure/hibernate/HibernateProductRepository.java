@@ -11,13 +11,13 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-@Transactional("product-transactional-manager")
+@Transactional("transactional-manager")
 public class HibernateProductRepository implements ProductRepository {
 
     protected final SessionFactory sessionFactory;
     protected final Class<Product>  aggregateClass;
 
-    public HibernateProductRepository(@Qualifier("product-session-factory") SessionFactory sessionFactory) {
+    public HibernateProductRepository(@Qualifier("session-factory") SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
         this.aggregateClass = Product.class;
     }

@@ -4,6 +4,7 @@ import com.webDevelopment.inventorySytemDDD.Shared.Domain.Products.ProductColorI
 import com.webDevelopment.inventorySytemDDD.Shared.Domain.Products.ProductId;
 import com.webDevelopment.inventorySytemDDD.Shared.Domain.Users.UserId;
 
+import java.util.HashMap;
 import java.util.Objects;
 
 public class Order {
@@ -72,5 +73,21 @@ public class Order {
                 Objects.equals(quantity, order.quantity) &&
                 Objects.equals(isSale, order.isSale) &&
                 Objects.equals(total, order.total);
+    }
+
+    public HashMap<String, String> data()
+    {
+        HashMap<String, String> data = new HashMap<String, String>() {{
+            put("id", productId.value());
+            put("idProduct", productId.value());
+            put("idProductColor", productColorId.value());
+            put("quantity", quantity.value().toString());
+            put("isSale", isSale.value().toString());
+            put("total", total.value().toString());
+        }};
+        return data;
+    }
+
+    public Order() {
     }
 }

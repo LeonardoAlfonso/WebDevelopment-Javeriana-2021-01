@@ -1,0 +1,32 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.webDevelopment.inventorySytemDDD.Products.ProductColor.Domain.ProductColor" table="productColors">
+        <composite-id name="productColorId" class="com.webDevelopment.inventorySytemDDD.Shared.Domain.Products.ProductColorId" access="field">
+            <key-property name="value" column="id" access="field" length="36"/>
+        </composite-id>
+
+        <component name="productId" class="com.webDevelopment.inventorySytemDDD.Shared.Domain.Products.ProductId" access="field">
+            <property name="value" column="idProduct" access="field" length="36"/>
+        </component>
+
+        <component name="productColorName" class="com.webDevelopment.inventorySytemDDD.Products.ProductColor.Domain.ValueObjects.ProductColorName" access="field">
+            <property name="value" column="name" access="field" type="string"/>
+        </component>
+
+        <component name="productColorQuantity" class="com.webDevelopment.inventorySytemDDD.Products.ProductColor.Domain.ValueObjects.ProductColorQuantity" access="field">
+            <property name="value" column="quantity" access="field" type="double"/>
+        </component>
+
+        <component name="productColorIsStock" class="com.webDevelopment.inventorySytemDDD.Products.ProductColor.Domain.ValueObjects.ProductColorIsStock" access="field">
+            <property name="value" column="isStock" access="field" type="boolean"/>
+        </component>
+
+        <component name="productColorRBG" class="com.webDevelopment.inventorySytemDDD.Products.ProductColor.Domain.ValueObjects.ProductColorRBG" access="field">
+            <property name="value" column="rgb" access="field" type="string"/>
+        </component>
+    </class>
+</hibernate-mapping>

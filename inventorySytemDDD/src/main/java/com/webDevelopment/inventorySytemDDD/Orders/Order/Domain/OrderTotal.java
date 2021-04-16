@@ -8,6 +8,8 @@ public class OrderTotal extends DoubleValueObject {
         this.value = total;
     }
 
+    private OrderTotal() {}
+
     private void validate(Double value) {
         if (value <= 0) {
             throw new OrderTotalNotValid("The Order must be greater than 0");

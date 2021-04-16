@@ -4,6 +4,9 @@ import com.webDevelopment.inventorySytemDDD.Shared.Domain.IntegerValueObject;
 import com.webDevelopment.inventorySytemDDD.Orders.Order.Domain.OrderQuantityNotValid;
 
 public class OrderQuantity extends IntegerValueObject  {
+
+    private OrderQuantity() {}
+
     public OrderQuantity(Integer quantity) {
         this.validate(quantity);
         this.value = quantity;

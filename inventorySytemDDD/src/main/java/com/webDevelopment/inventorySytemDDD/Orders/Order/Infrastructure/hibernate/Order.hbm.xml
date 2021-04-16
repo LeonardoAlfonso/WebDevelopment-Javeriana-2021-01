@@ -1,0 +1,36 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.webDevelopment.inventorySytemDDD.Orders.Order.Domain.Order" table="orders">
+        <composite-id name="orderId" class="com.webDevelopment.inventorySytemDDD.Orders.Order.Domain.OrderId" access="field">
+            <key-property name="value" column="id" access="field" length="36"/>
+        </composite-id>
+
+        <component name="productColorId" class="com.webDevelopment.inventorySytemDDD.Shared.Domain.Products.ProductColorId" access="field">
+            <property name="value" column="idProductColor" access="field" length="36"/>
+        </component>
+
+        <component name="userId" class="com.webDevelopment.inventorySytemDDD.Shared.Domain.Users.UserId" access="field">
+            <property name="value" column="idUser" access="field" length="36"/>
+        </component>
+
+        <component name="productId" class="com.webDevelopment.inventorySytemDDD.Shared.Domain.Products.ProductId" access="field">
+            <property name="value" column="idProduct" access="field" length="36"/>
+        </component>
+
+        <component name="quantity" class="com.webDevelopment.inventorySytemDDD.Orders.Order.Domain.OrderQuantity" access="field">
+            <property name="value" column="quantity" access="field" type="integer"/>
+        </component>
+
+        <component name="isSale" class="com.webDevelopment.inventorySytemDDD.Orders.Order.Domain.OrderIsSale" access="field">
+            <property name="value" column="isSale" access="field" type="boolean"/>
+        </component>
+
+        <component name="total" class="com.webDevelopment.inventorySytemDDD.Orders.Order.Domain.OrderTotal" access="field">
+            <property name="value" column="total" access="field" type="double"/>
+        </component>
+    </class>
+</hibernate-mapping>

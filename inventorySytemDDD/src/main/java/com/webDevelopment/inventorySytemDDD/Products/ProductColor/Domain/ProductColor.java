@@ -5,6 +5,7 @@ import com.webDevelopment.inventorySytemDDD.Products.ProductColor.Domain.ValueOb
 import com.webDevelopment.inventorySytemDDD.Shared.Domain.Products.ProductColorId;
 import com.webDevelopment.inventorySytemDDD.Shared.Domain.Products.ProductId;
 
+import java.util.HashMap;
 import java.util.Objects;
 
 public class ProductColor {
@@ -68,4 +69,19 @@ public class ProductColor {
                 Objects.equals(productColorIsStock, that.productColorIsStock) &&
                 Objects.equals(productColorRBG, that.productColorRBG);
     }
+
+    public HashMap<String, String> data()
+    {
+        HashMap<String, String> data = new HashMap<String, String>() {{
+            put("id", productId.value());
+            put("idProduct", productId.value());
+            put("name", productColorName.value());
+            put("quantity", productColorQuantity.value().toString());
+            put("isStock", productColorIsStock.value().toString());
+            put("rgb", productColorRBG.value());
+        }};
+        return data;
+    }
+
+    private ProductColor(){}
 }

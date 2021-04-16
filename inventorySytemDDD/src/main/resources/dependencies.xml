@@ -9,6 +9,10 @@
 
     <bean id="HibernateProductRepository" class="com.webDevelopment.inventorySytemDDD.Products.Product.Infrastructure.hibernate.HibernateProductRepository"/>
 
+    <bean id="HibernateProductColorRepository" class="com.webDevelopment.inventorySytemDDD.Products.ProductColor.Infrastructure.hibernate.HibernateProductColorRepository"/>
+
+    <bean id="HibernateOrderRepository" class="com.webDevelopment.inventorySytemDDD.Orders.Order.Infrastructure.hibernate.HibernateOrderRepository"/>
+
     <bean id="UserFinder" class="com.webDevelopment.inventorySytemDDD.Users.User.Application.Find.UserFinder">
         <constructor-arg ref="MemoryRepository"/>
     </bean>
@@ -33,6 +37,14 @@
 
     <bean id="ProductAll" class="com.webDevelopment.inventorySytemDDD.Products.Product.Application.All.ProductAll">
         <constructor-arg ref="HibernateProductRepository"/>
+    </bean>
+
+    <bean id="ProductColorFinder" class="com.webDevelopment.inventorySytemDDD.Products.ProductColor.Application.Find.ProductColorFinder">
+        <constructor-arg ref="HibernateProductColorRepository"/>
+    </bean>
+
+    <bean id="SaleOrderCreator" class="com.webDevelopment.inventorySytemDDD.Orders.Order.Application.Create.Sale.SaleOrderCreator">
+        <constructor-arg ref="HibernateOrderRepository"/>
     </bean>
 
 </beans>

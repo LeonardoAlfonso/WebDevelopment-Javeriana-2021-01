@@ -20,20 +20,22 @@ public class HibernateConfigFactory {
     @Autowired
     private Environment env;
 
-    @Bean("product-session-factory")
+    @Bean("session-factory")
     public LocalSessionFactoryBean sessionFactory()
     {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
         sessionFactory.setHibernateProperties(hibernateProperties());
 
-        FileSystemResource resource = new FileSystemResource("./src/main/java/com/webDevelopment/inventorySytemDDD/Products/Product/Infrastructure/hibernate/Product.hbm.xml");
+        FileSystemResource resource1 = new FileSystemResource("./src/main/java/com/webDevelopment/inventorySytemDDD/Products/Product/Infrastructure/hibernate/Product.hbm.xml");
+        FileSystemResource resource2 = new FileSystemResource("./src/main/java/com/webDevelopment/inventorySytemDDD/Products/ProductColor/Infrastructure/hibernate/ProductColor.hbm.xml");
+        FileSystemResource resource3 = new FileSystemResource("./src/main/java/com/webDevelopment/inventorySytemDDD/Orders/Order/Infrastructure/hibernate/Order.hbm.xml");
 
-        sessionFactory.setMappingLocations(resource);
+        sessionFactory.setMappingLocations(resource1, resource2, resource3);
         return sessionFactory;
     }
 
-    @Bean("product-transactional-manager")
+    @Bean("transactional-manager")
     public PlatformTransactionManager hibernateTransactionManager()
     {
         HibernateTransactionManager transactionManager = new HibernateTransactionManager();

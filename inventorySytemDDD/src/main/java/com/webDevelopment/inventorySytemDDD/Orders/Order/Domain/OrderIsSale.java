@@ -8,6 +8,8 @@ public class OrderIsSale extends BooleanValueObject {
         this.value = isSale;
     }
 
+    private OrderIsSale() {}
+
     private void validate(Boolean value) {
 
     }

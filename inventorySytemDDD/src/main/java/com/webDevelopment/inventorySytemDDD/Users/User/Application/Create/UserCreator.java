@@ -29,7 +29,6 @@ public class UserCreator {
         try
         {
             this.finder.execute(UserId);
-
         }
         catch (UserNotExist exception) { }
     }
