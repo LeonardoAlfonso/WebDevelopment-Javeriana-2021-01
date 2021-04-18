@@ -23,8 +23,8 @@ public class HibernateProductRepository implements ProductRepository {
     }
 
     @Override
-    public void update(String productId, Product product) {
-
+    public void update(Product product) {
+        this.sessionFactory.getCurrentSession().update(product);
     }
 
     @Override

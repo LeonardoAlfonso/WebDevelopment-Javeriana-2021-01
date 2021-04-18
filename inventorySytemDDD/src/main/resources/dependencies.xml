@@ -47,4 +47,8 @@
         <constructor-arg ref="HibernateOrderRepository"/>
     </bean>
 
+    <bean id="ProductAddProductColor" class="com.webDevelopment.inventorySytemDDD.Products.Product.Application.AddProductColor.ProductAddProductColor">
+        <constructor-arg ref="HibernateProductRepository"/>
+    </bean>
+
 </beans>

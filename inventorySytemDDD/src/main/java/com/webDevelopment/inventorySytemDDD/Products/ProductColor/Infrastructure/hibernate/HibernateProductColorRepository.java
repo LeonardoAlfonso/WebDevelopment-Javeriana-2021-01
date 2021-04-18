@@ -21,8 +21,8 @@ public class HibernateProductColorRepository implements ProductColorRepository {
     }
 
     @Override
-    public void update(String productColorId, ProductColor productColor) {
-
+    public void update(ProductColor productColor) {
+        this.sessionFactory.getCurrentSession().update(productColor);
     }
 
     @Override

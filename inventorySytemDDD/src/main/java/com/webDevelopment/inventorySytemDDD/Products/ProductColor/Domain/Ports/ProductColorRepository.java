@@ -5,7 +5,7 @@ import com.webDevelopment.inventorySytemDDD.Products.ProductColor.Domain.Product
 import java.util.Optional;
 
 public interface ProductColorRepository {
-    void update(String productColorId, ProductColor productColor);
+    void update(ProductColor productColor);
     Optional<ProductColor> find (String productColorId);
     void save(ProductColor productColor);
 }

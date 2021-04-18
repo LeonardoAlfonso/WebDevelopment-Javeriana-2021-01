@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ProductRepository {
-    void update(String productId, Product product);
+    void update(Product product);
     Optional<Product> find (String ProductId);
     void save(Product product);
     Optional<List<Product>> all();

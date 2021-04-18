@@ -29,7 +29,7 @@ public class ProductColorUpdateQuantity {
         else {
             productColor.buyProductColor(new ProductColorQuantity(quantity));
         }
-        this.repository.update(productColorId, productColor);
+        this.repository.update(productColor);
     }
 
 }

@@ -1,21 +1,22 @@
-package com.webDevelopment.inventorySytemDDD.Products.Product.Application.AddBalance;
+package com.webDevelopment.inventorySytemDDD.Products.Product.Application.AddProductColor;
 
 import com.webDevelopment.inventorySytemDDD.Products.Product.Domain.Exceptions.ProductNotExist;
 import com.webDevelopment.inventorySytemDDD.Products.Product.Domain.Ports.ProductRepository;
 import com.webDevelopment.inventorySytemDDD.Products.Product.Domain.Product;
 import com.webDevelopment.inventorySytemDDD.Products.Product.Domain.ValueObjects.ProductTotalSales;
+import com.webDevelopment.inventorySytemDDD.Shared.Domain.Products.ProductColorId;
 
 import java.util.Optional;
 
-public class ProductBalanceAdder
-{
+public class ProductAddProductColor {
+
     private ProductRepository repository;
 
-    public ProductBalanceAdder(ProductRepository repository) {
+    public ProductAddProductColor(ProductRepository repository) {
         this.repository = repository;
     }
 
-    public void execute(String productId, Double balance)
+    public void execute(String productId, String productColorId)
     {
         Optional<Product> product = repository.find(productId);
         if (product.isEmpty())
@@ -23,7 +24,8 @@ public class ProductBalanceAdder
             throw new ProductNotExist("The product " + productId + " not exists");
         }
         Product finalProduct = product.get();
-        finalProduct.UpdateSales(new ProductTotalSales(balance));
+        finalProduct.addProductColor(new ProductColorId(productColorId));
         repository.update(finalProduct);
     }
+
 }
