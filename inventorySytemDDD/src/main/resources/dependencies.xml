@@ -13,6 +13,8 @@
 
     <bean id="HibernateOrderRepository" class="com.webDevelopment.inventorySytemDDD.Orders.Order.Infrastructure.hibernate.HibernateOrderRepository"/>
 
+    <bean id="SpringApplicationEventBus" class="com.webDevelopment.inventorySytemDDD.Shared.Infrastructure.Bus.Event.Spring.SpringApplicationEventBus"/>
+
     <bean id="UserFinder" class="com.webDevelopment.inventorySytemDDD.Users.User.Application.Find.UserFinder">
         <constructor-arg ref="MemoryRepository"/>
     </bean>
@@ -45,10 +47,19 @@
 
     <bean id="SaleOrderCreator" class="com.webDevelopment.inventorySytemDDD.Orders.Order.Application.Create.Sale.SaleOrderCreator">
         <constructor-arg ref="HibernateOrderRepository"/>
+        <constructor-arg ref="SpringApplicationEventBus"/>
     </bean>
 
     <bean id="ProductAddProductColor" class="com.webDevelopment.inventorySytemDDD.Products.Product.Application.AddProductColor.ProductAddProductColor">
         <constructor-arg ref="HibernateProductRepository"/>
+    </bean>
+
+    <bean id="ProductColorUpdateQuantity" class="com.webDevelopment.inventorySytemDDD.Products.ProductColor.Application.UpdateQuantity.ProductColorUpdateQuantity">
+        <constructor-arg ref="HibernateProductColorRepository"/>
+    </bean>
+
+    <bean id="UpdateQuantityOnOrderCreated" class="com.webDevelopment.inventorySytemDDD.Products.ProductColor.Application.UpdateQuantity.UpdateQuantityOnOrderCreated">
+        <constructor-arg ref="ProductColorUpdateQuantity"/>
     </bean>
 
 </beans>

@@ -1,5 +1,7 @@
 package com.webDevelopment.inventorySytemDDD.Orders.Order.Domain;
 
+import com.webDevelopment.inventorySytemDDD.Shared.Domain.Aggregate.AggregateRoot;
+import com.webDevelopment.inventorySytemDDD.Shared.Domain.Orders.OrderCreatedDomainEvent;
 import com.webDevelopment.inventorySytemDDD.Shared.Domain.Products.ProductColorId;
 import com.webDevelopment.inventorySytemDDD.Shared.Domain.Products.ProductId;
 import com.webDevelopment.inventorySytemDDD.Shared.Domain.Users.UserId;
@@ -7,7 +9,7 @@ import com.webDevelopment.inventorySytemDDD.Shared.Domain.Users.UserId;
 import java.util.HashMap;
 import java.util.Objects;
 
-public class Order {
+public class Order extends AggregateRoot {
     private OrderId orderId;
     private ProductColorId productColorId;
     private UserId userId;
@@ -37,8 +39,9 @@ public class Order {
     public static Order createSaleOrder(OrderId orderId, ProductColorId productColorId, UserId userId, ProductId productId, OrderQuantity quantity,
                        OrderTotal total)
     {
-        Order order = new Order (orderId, productColorId, userId, productId, quantity, new OrderIsSale(true), total);
-        //TODO: Record evento de orden creada
+        OrderIsSale orderIsSale = new OrderIsSale(true);
+        Order order = new Order (orderId, productColorId, userId, productId, quantity, orderIsSale, total);
+        order.record(new OrderCreatedDomainEvent(productColorId.value(), quantity.value(), orderIsSale.value()));
         return order;
     }
 
