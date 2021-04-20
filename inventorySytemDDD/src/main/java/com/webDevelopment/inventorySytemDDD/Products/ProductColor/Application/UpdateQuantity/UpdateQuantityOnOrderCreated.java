@@ -7,7 +7,7 @@ import org.springframework.context.event.EventListener;
 @DomainEventSubscriber({OrderCreatedDomainEvent.class})
 public final class UpdateQuantityOnOrderCreated {
 
-    private ProductColorUpdateQuantity productColorUpdateQuantity;
+    private final ProductColorUpdateQuantity productColorUpdateQuantity;
 
     public UpdateQuantityOnOrderCreated(ProductColorUpdateQuantity productColorUpdateQuantity) {
         this.productColorUpdateQuantity = productColorUpdateQuantity;
@@ -15,6 +15,7 @@ public final class UpdateQuantityOnOrderCreated {
 
     @EventListener
     public void on(OrderCreatedDomainEvent event) {
+        System.out.println("Llego el evento: " + event.eventName());
         this.productColorUpdateQuantity.execute(event.aggregateId(), event.getQuantity(), event.isSale());
     }
 

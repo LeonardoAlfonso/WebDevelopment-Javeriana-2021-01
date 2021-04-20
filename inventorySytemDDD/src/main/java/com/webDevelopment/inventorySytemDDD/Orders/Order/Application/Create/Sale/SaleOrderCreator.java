@@ -16,12 +16,12 @@ public class SaleOrderCreator {
         this.eventBus = eventBus;
     }
 
-    public void execute(String orderId, String productId, String productColorId, String userId, Integer quantity, Double total)
+    public void execute(String orderId, String productId, String productColorId, String userId, Double quantity, Double total)
     {
         Order order = Order.createSaleOrder(new OrderId(orderId), new ProductColorId(productColorId), new UserId(userId), new ProductId(productId),
                 new OrderQuantity(quantity), new OrderTotal(total));
         this.repository.save(order);
-        this.eventBus.publish(order.pullDomainEvents());
+        eventBus.publish(order.pullDomainEvents());
     }
 
 }

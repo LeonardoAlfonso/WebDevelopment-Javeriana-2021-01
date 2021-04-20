@@ -7,7 +7,6 @@ import org.springframework.context.ApplicationEventPublisher;
 import java.util.List;
 
 public class SpringApplicationEventBus implements EventBus {
-
     private final ApplicationEventPublisher publisher;
 
     public SpringApplicationEventBus(ApplicationEventPublisher publisher) {
@@ -15,7 +14,7 @@ public class SpringApplicationEventBus implements EventBus {
     }
 
     @Override
-    public void publish(List<DomainEvent> events) {
+    public void publish(final List<DomainEvent> events) {
         events.forEach(this::publish);
     }
 

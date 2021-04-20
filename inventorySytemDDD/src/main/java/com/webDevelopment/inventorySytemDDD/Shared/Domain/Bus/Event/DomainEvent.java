@@ -14,21 +14,33 @@ public abstract class DomainEvent {
 
     public DomainEvent(String aggregateId) {
         this.aggregateId = aggregateId;
-        this.eventId = UUID.randomUUID().toString();
-        this.occurredOn = this.dateToString(LocalDateTime.now());
+        this.eventId     = UUID.randomUUID().toString();
+        this.occurredOn  = this.dateToString(LocalDateTime.now());
     }
 
-    protected String dateToString(LocalDateTime dateTime) {
+    public static String dateToString(LocalDateTime dateTime) {
         return dateTime.format(DateTimeFormatter.ISO_LOCAL_DATE);
     }
 
     public DomainEvent(String aggregateId, String eventId, String occurredOn) {
         this.aggregateId = aggregateId;
-        this.eventId = eventId;
-        this.occurredOn = occurredOn;
+        this.eventId     = eventId;
+        this.occurredOn  = occurredOn;
     }
 
-    protected DomainEvent () {}
+    protected DomainEvent() {
+    }
+
+    public abstract String eventName();
+
+    public abstract HashMap<String, Serializable> toPrimitives();
+
+    public abstract DomainEvent fromPrimitives(
+            String aggregateId,
+            HashMap<String, Serializable> body,
+            String eventId,
+            String occurredOn
+    );
 
     public String aggregateId() {
         return aggregateId;
@@ -41,13 +53,4 @@ public abstract class DomainEvent {
     public String occurredOn() {
         return occurredOn;
     }
-
-    public abstract String eventName();
-
-    public abstract HashMap<String, Serializable> toPrimitive();
-
-    public abstract DomainEvent fromPrimitive(String aggregateId,
-                                              HashMap<String, Serializable> body,
-                                              String eventId,
-                                              String occurredOn);
 }

@@ -22,7 +22,7 @@
         </component>
 
         <component name="quantity" class="com.webDevelopment.inventorySytemDDD.Orders.Order.Domain.OrderQuantity" access="field">
-            <property name="value" column="quantity" access="field" type="integer"/>
+            <property name="value" column="quantity" access="field" type="double"/>
         </component>
 
         <component name="isSale" class="com.webDevelopment.inventorySytemDDD.Orders.Order.Domain.OrderIsSale" access="field">

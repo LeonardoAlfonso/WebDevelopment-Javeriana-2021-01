@@ -23,10 +23,40 @@ public final class OrderCreatedDomainEvent extends DomainEvent {
         this.isSale = isSale;
     }
 
-    public OrderCreatedDomainEvent(String aggregateId, String eventId, String occurredOn, double quantity, boolean isSale) {
+    public OrderCreatedDomainEvent(
+            String aggregateId,
+            String eventId,
+            String occurredOn,
+            double quantity,
+            boolean isSale
+    ) {
         super(aggregateId, eventId, occurredOn);
         this.quantity = quantity;
         this.isSale = isSale;
+    }
+
+    @Override
+    public String eventName() {
+        return "order.created";
+    }
+
+    @Override
+    public HashMap<String, Serializable> toPrimitives() {
+        return new HashMap<String, Serializable>() {{
+            put("quantity", quantity);
+            put("isSale", isSale);
+        }};
+    }
+
+    @Override
+    public DomainEvent fromPrimitives(String aggregateId, HashMap<String, Serializable> body, String eventId, String occurredOn) {
+        return new OrderCreatedDomainEvent(
+                aggregateId,
+                eventId,
+                occurredOn,
+                (double) body.get("quantity"),
+                (boolean) body.get("isSale")
+        );
     }
 
     public double getQuantity() {
@@ -38,33 +68,11 @@ public final class OrderCreatedDomainEvent extends DomainEvent {
     }
 
     @Override
-    public String eventName() {
-        return "order.created";
-    }
-
-    @Override
-    public HashMap<String, Serializable> toPrimitive() {
-        return new HashMap<String, Serializable>() {{
-            put("quantity", quantity);
-            put("isSale", isSale);
-        }};
-    }
-
-    @Override
-    public DomainEvent fromPrimitive(String aggregateId, HashMap<String, Serializable> body, String eventId, String occurredOn) {
-        return new OrderCreatedDomainEvent(aggregateId,
-                eventId,
-                occurredOn,
-                (double) body.get("quantity"),
-                (boolean) body.get("isSale"));
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         OrderCreatedDomainEvent that = (OrderCreatedDomainEvent) o;
-        return Double.compare(that.quantity, quantity) == 0 && isSale == that.isSale;
+        return quantity == that.quantity && isSale == that.isSale;
     }
 
     @Override

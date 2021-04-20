@@ -47,11 +47,7 @@
 
     <bean id="SaleOrderCreator" class="com.webDevelopment.inventorySytemDDD.Orders.Order.Application.Create.Sale.SaleOrderCreator">
         <constructor-arg ref="HibernateOrderRepository"/>
-        <constructor-arg ref="SpringApplicationEventBus"/>
-    </bean>
-
-    <bean id="ProductAddProductColor" class="com.webDevelopment.inventorySytemDDD.Products.Product.Application.AddProductColor.ProductAddProductColor">
-        <constructor-arg ref="HibernateProductRepository"/>
+        <constructor-arg ref="RabbitMqEventBus"/>
     </bean>
 
     <bean id="ProductColorUpdateQuantity" class="com.webDevelopment.inventorySytemDDD.Products.ProductColor.Application.UpdateQuantity.ProductColorUpdateQuantity">
@@ -60,6 +56,22 @@
 
     <bean id="UpdateQuantityOnOrderCreated" class="com.webDevelopment.inventorySytemDDD.Products.ProductColor.Application.UpdateQuantity.UpdateQuantityOnOrderCreated">
         <constructor-arg ref="ProductColorUpdateQuantity"/>
+    </bean>
+
+    <bean id="ProductAddProductColor" class="com.webDevelopment.inventorySytemDDD.Products.Product.Application.AddProductColor.ProductAddProductColor">
+        <constructor-arg ref="HibernateProductRepository"/>
+    </bean>
+
+    <bean id="RabbitMqPublisher" class="com.webDevelopment.inventorySytemDDD.Shared.Infrastructure.Bus.Event.RabbitMQ.RabbitMqPublisher"/>
+
+    <bean id="RabbitMqEventBus" class="com.webDevelopment.inventorySytemDDD.Shared.Infrastructure.Bus.Event.RabbitMQ.RabbitMqEventBus">
+        <constructor-arg ref="RabbitMqPublisher"/>
+    </bean>
+
+    <bean id="DomainEventsInformation" class="com.webDevelopment.inventorySytemDDD.Shared.Infrastructure.Bus.Event.RabbitMQ.DomainEventsInformation"/>
+
+    <bean id="DomainEventJsonDeserializer" class="com.webDevelopment.inventorySytemDDD.Shared.Infrastructure.Bus.Event.RabbitMQ.Serializable.DomainEventJsonDeserializer">
+        <constructor-arg ref="DomainEventsInformation"/>
     </bean>
 
 </beans>

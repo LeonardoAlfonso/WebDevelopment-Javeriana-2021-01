@@ -8,19 +8,3 @@ import java.lang.annotation.*;
 public @interface DomainEventSubscriber {
     Class<? extends DomainEvent>[] value();
 }
-
-
-
-/*
-* @DomainEventSubscriber({OrderCreatedDomainEvent.class})
-* public class UpdateQuantityOnOrderCreated {
-*
-*   @EventListener
-*   public void on(OrderCreatedDomainEvent event) {
-*   .................
-*   }
-*
-* }
-*
-*
-* */

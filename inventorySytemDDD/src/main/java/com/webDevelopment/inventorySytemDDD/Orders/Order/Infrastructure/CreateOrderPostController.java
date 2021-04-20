@@ -28,7 +28,7 @@ public class CreateOrderPostController {
         private String idProductColor;
         private String idUser;
         private String idProduct;
-        private int quantity;
+        private double quantity;
         private double total;
 
         public Request() {}
@@ -65,11 +65,11 @@ public class CreateOrderPostController {
             this.idProduct = idProduct;
         }
 
-        public int getQuantity() {
+        public double getQuantity() {
             return quantity;
         }
 
-        public void setQuantity(int quantity) {
+        public void setQuantity(double quantity) {
             this.quantity = quantity;
         }
 
