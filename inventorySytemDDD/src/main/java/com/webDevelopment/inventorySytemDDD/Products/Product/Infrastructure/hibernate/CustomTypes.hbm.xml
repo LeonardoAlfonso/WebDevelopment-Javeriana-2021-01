@@ -4,5 +4,6 @@
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <typedef class="com.webDevelopment.inventorySytemDDD.Shared.Infrastructure.Hibernate.JsonListType" name="json_string" />
+    <typedef class="com.webDevelopment.inventorySytemDDD.Products.Product.Infrastructure.hibernate.JsonCustomType" name="json_type" />
+<!--    <typedef class="com.webDevelopment.inventorySytemDDD.Shared.Infrastructure.Hibernate.JsonListType" name="json_string" />-->
 </hibernate-mapping>

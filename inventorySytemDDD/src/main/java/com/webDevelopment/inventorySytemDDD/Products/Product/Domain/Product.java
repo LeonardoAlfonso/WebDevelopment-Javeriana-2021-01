@@ -11,28 +11,23 @@ public class Product
     private ProductId productId;
     private ProductName productName;
     private ProductDescription productDescription;
-
-    public ProductTotalSales getProductTotalSales() {
-        return productTotalSales;
-    }
-
     private ProductTotalSales productTotalSales;
-    private Optional<ProductColors> productColors;
-    private List<ProductColorId> existingColors;
+    private ProductDetail productDetail;
+//    List<ProductDetailId> productDetailIds;
 
     public Product(ProductId productId,
                    ProductName productName,
                    ProductDescription productDescription,
                    ProductTotalSales productTotalSales,
-                   Optional<ProductColors> productColors,
-                   List<ProductColorId> existingColors
+                   ProductDetail productDetail
+//                   List<ProductDetailId> productDetailIds
     ) {
         this.productId = productId;
         this.productName = productName;
         this.productDescription = productDescription;
         this.productTotalSales = productTotalSales;
-        this.productColors = productColors;
-        this.existingColors = existingColors;
+        this.productDetail = productDetail;
+//        this.productDetailIds = productDetailIds;
     }
 
     public static Product create(ProductId productId,
@@ -40,12 +35,11 @@ public class Product
                                  ProductDescription productDescription,
                                  ProductTotalSales productTotalSales)
     {
-        List<ProductColorId> existingColors = new ArrayList<ProductColorId>();
-        return new Product(productId, productName, productDescription, productTotalSales, Optional.ofNullable(null),existingColors);
+        return new Product(productId, productName, productDescription, productTotalSales, null);
     }
 
     public void addProductColor(ProductColorId productColorId){
-        this.existingColors.add(productColorId);
+
     }
 
     public void UpdateSales(ProductTotalSales Sale)
@@ -61,8 +55,7 @@ public class Product
         Product product = (Product) o;
         return Objects.equals(productId, product.productId) &&
                 Objects.equals(productName, product.productName) &&
-                Objects.equals(productDescription, product.productDescription) &&
-                Objects.equals(existingColors, product.existingColors);
+                Objects.equals(productDescription, product.productDescription);
     }
 
     public HashMap<String, String> data()
@@ -73,6 +66,10 @@ public class Product
             put("description", productDescription.value());
         }};
         return data;
+    }
+
+    public ProductTotalSales getProductTotalSales() {
+        return productTotalSales;
     }
 
     private Product(){}

@@ -4,7 +4,7 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="com.webDevelopment.inventorySytemDDD.Products.Product.Domain.Product" table="products">
+    <class name="com.webDevelopment.inventorySytemDDD.Products.Product.Domain.Product" table="productsTest">
         <composite-id name="productId" class="com.webDevelopment.inventorySytemDDD.Shared.Domain.Products.ProductId" access="field">
             <key-property name="value" column="id" access="field" length="36"/>
         </composite-id>
@@ -17,10 +17,16 @@
             <property name="value" column="description" access="field" type="string"/>
         </component>
 
-        <property name="existingColors" column="existing_colors" access="field">
-            <type name="json_string">
-                <param name="list_of">com.webDevelopment.inventorySytemDDD.Shared.Domain.Products.ProductColorId</param>
+        <property name="productDetail" column="details" access="field">
+            <type name="json_type">
+                <param name="detail">com.webDevelopment.inventorySytemDDD.Products.Product.Domain.ProductDetail</param>
             </type>
         </property>
+
+<!--        <property name="productDetail" column="details" access="field">-->
+<!--            <type name="json_string">-->
+<!--                <param name="list_of">com.webDevelopment.inventorySytemDDD.Products.Product.Domain.ProductDetail</param>-->
+<!--            </type>-->
+<!--        </property>-->
     </class>
 </hibernate-mapping>

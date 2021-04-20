@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/orders")
 public class CreateOrderPostController {
 
-    @Autowired
-    private SaleOrderCreator creator;
-
-    @PostMapping(value = "/create", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity execute(@RequestBody Request request) {
-        creator.execute(request.getId(), request.getIdProduct(), request.getIdProductColor(), request.getIdUser(), request.getQuantity(), request.getTotal());
-        return ResponseEntity.status(HttpStatus.CREATED).body(null);
-    }
+//    @Autowired
+//    private SaleOrderCreator creator;
+//
+//    @PostMapping(value = "/create", produces = MediaType.APPLICATION_JSON_VALUE)
+//    public ResponseEntity execute(@RequestBody Request request) {
+//        creator.execute(request.getId(), request.getIdProduct(), request.getIdProductColor(), request.getIdUser(), request.getQuantity(), request.getTotal());
+//        return ResponseEntity.status(HttpStatus.CREATED).body(null);
+//    }
 
     static class Request {
         private String id;
