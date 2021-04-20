@@ -29,8 +29,19 @@ public class HibernateProductRepository implements ProductRepository {
 
     @Override
     public Optional<Product> find(String productId) {
-        ProductId id = new ProductId(productId);
-        return Optional.ofNullable(sessionFactory.getCurrentSession().byId(aggregateClass).load(id));
+        String m = "";
+        Optional<Product> response = Optional.ofNullable(null);
+        try
+        {
+            ProductId id = new ProductId(productId);
+            response = Optional.ofNullable(sessionFactory.getCurrentSession().byId(aggregateClass).load(id));
+        }
+        catch (Exception e)
+        {
+            m = e.getMessage();
+        }
+
+        return response;
     }
 
     @Override

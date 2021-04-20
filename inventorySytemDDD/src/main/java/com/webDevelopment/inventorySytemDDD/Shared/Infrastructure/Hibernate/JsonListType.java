@@ -45,23 +45,18 @@ public class JsonListType implements UserType, DynamicParameterizedType {
     }
 
     @Override
-    public Object nullSafeGet(
-            ResultSet rs,
-            String[] names,
-            SharedSessionContractImplementor session,
-            Object owner
-    ) throws HibernateException, SQLException {
-        return nullSafeGet(rs, names, owner);
+    public Object nullSafeGet(ResultSet rs, String[] names, SharedSessionContractImplementor session, Object owner) throws HibernateException, SQLException {
+        ResultSet response = rs;
+        return null;
+//        return nullSafeGet(rs, names, owner);
     }
 
     @Override
-    public void nullSafeSet(
-            PreparedStatement st,
-            Object value,
-            int index,
-            SharedSessionContractImplementor session
-    ) throws HibernateException, SQLException {
-        nullSafeSet(st, value, index);
+    public void nullSafeSet(PreparedStatement st, Object value, int index, SharedSessionContractImplementor session) throws HibernateException, SQLException {
+        PreparedStatement asda = st;
+//        ResultSet response = rs;
+//        return null;
+//        nullSafeSet(st, value, index);
     }
 
     public Object nullSafeGet(ResultSet rs, String[] names, Object owner) throws HibernateException, SQLException {
