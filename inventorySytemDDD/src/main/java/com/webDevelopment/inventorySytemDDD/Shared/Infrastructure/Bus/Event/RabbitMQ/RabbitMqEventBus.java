@@ -3,16 +3,22 @@ package com.webDevelopment.inventorySytemDDD.Shared.Infrastructure.Bus.Event.Rab
 import com.webDevelopment.inventorySytemDDD.Shared.Domain.Bus.Event.DomainEvent;
 import com.webDevelopment.inventorySytemDDD.Shared.Domain.Bus.Event.EventBus;
 import org.springframework.amqp.AmqpException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 
 import java.util.List;
 
 public class RabbitMqEventBus implements EventBus {
     private final RabbitMqPublisher publisher;
-    private final String            exchangeName;
+    private final String exchangeName;
 
-    public RabbitMqEventBus(RabbitMqPublisher publisher) {
-        this.publisher         = publisher;
-        this.exchangeName      = "domain_events";
+    @Autowired
+    private Environment env;
+
+    public RabbitMqEventBus(RabbitMqPublisher publisher, Environment env) {
+        this.publisher = publisher;
+        this.env = env;
+        this.exchangeName = env.getProperty("rabbit.exchange");
     }
 
     @Override

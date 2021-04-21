@@ -13,8 +13,8 @@ public final class UpdateQuantityOnOrderCreated {
         this.productColorUpdateQuantity = productColorUpdateQuantity;
     }
 
+    @EventListener
     public void on(OrderCreatedDomainEvent event) {
-        System.out.println("Llego el evento: " + event.eventName());
         this.productColorUpdateQuantity.execute(event.aggregateId(), event.getQuantity(), event.isSale());
     }
 

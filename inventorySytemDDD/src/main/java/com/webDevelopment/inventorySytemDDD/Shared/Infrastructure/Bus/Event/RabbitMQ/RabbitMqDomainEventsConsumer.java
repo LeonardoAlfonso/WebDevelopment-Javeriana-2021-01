@@ -1,6 +1,5 @@
 package com.webDevelopment.inventorySytemDDD.Shared.Infrastructure.Bus.Event.RabbitMQ;
 
-import com.google.common.base.CaseFormat;
 import com.webDevelopment.inventorySytemDDD.Shared.Domain.Bus.Event.DomainEvent;
 import com.webDevelopment.inventorySytemDDD.Shared.Infrastructure.Bus.Event.RabbitMQ.Serializable.DomainEventJsonDeserializer;
 import org.springframework.amqp.core.Message;
@@ -17,6 +16,7 @@ public class RabbitMqDomainEventsConsumer {
 
     private final DomainEventJsonDeserializer deserializer;
     private final DomainEventsInformation information;
+
     @Autowired
     private final ApplicationContext context;
 
@@ -28,16 +28,15 @@ public class RabbitMqDomainEventsConsumer {
         this.context = context;
     }
 
-    @RabbitListener(queues = "#{'${rabbitmq.queue.names}'.split(',')}")
+    @RabbitListener(queues = "#{'${rabbit.queues}'.split(',')}")
     public void consumer(Message message) throws Exception {
         String serializedMessage = new String(message.getBody());
-        System.out.println(serializedMessage);
         DomainEvent domainEvent       = deserializer.deserialize(serializedMessage);
         String queue = message.getMessageProperties().getConsumerQueue();
-        Class<?> subscriberclass = subscriberFor(queue);
-        Method subscriberOnMethod = subscriberclass.getMethod("on", domainEvent.getClass());
+        Object subscriber = subscriberFor(queue);
+        Method subscriberOnMethod = subscriber.getClass().getMethod("on", domainEvent.getClass());
         try {
-            subscriberOnMethod.invoke(subscriberclass, domainEvent);
+            subscriberOnMethod.invoke(subscriber, domainEvent);
         } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException error) {
             throw new Exception(String.format(
                     "The subscriber <%s> should implement a method `on` listening the domain event <%s>",
@@ -47,11 +46,13 @@ public class RabbitMqDomainEventsConsumer {
         }
     }
 
-    private Class<?> subscriberFor(String queue) throws Exception {
+    private Object subscriberFor(String queue) throws Exception {
         if(!this.information.validateEventSubscriber(queue)) {
             throw new Exception(String.format("There are not registered subscribers for <%s> queue", queue));
         }
-        return this.information.getEventSubscriber(queue);
+        String eventSubscriberName = this.information.getEventSubscriber(queue);
+        Object subscriber = context.getBean(eventSubscriberName);
+        return subscriber;
     }
 
 }

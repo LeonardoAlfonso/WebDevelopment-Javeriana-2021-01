@@ -31,7 +31,4 @@ public final class RabbitMqPublisher {
         rabbitTemplate.send(exchangeName, domainEvent.eventName(), message);
     }
 
-    public void publish(Message domainEvent, String exchangeName, String routingKey) throws AmqpException {
-        rabbitTemplate.send(exchangeName, routingKey, domainEvent);
-    }
 }

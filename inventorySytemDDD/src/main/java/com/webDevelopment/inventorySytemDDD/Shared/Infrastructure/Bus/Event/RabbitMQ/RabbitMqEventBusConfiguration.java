@@ -13,7 +13,7 @@ public class RabbitMqEventBusConfiguration {
     @Autowired
     private Environment env;
 
-    public RabbitMqEventBusConfiguration() {
+    public RabbitMqEventBusConfiguration(Environment env) {
         this.env = env;
     }
 
