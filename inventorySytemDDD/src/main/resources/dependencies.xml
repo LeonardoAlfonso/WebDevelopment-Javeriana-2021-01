@@ -11,7 +11,7 @@
 
     <bean id="HibernateProductColorRepository" class="com.webDevelopment.inventorySytemDDD.Products.ProductColor.Infrastructure.hibernate.HibernateProductColorRepository"/>
 
-<!--    <bean id="HibernateOrderRepository" class="com.webDevelopment.inventorySytemDDD.Orders.Order.Infrastructure.hibernate.HibernateOrderRepository"/>-->
+    <bean id="HibernateOrderRepository" class="com.webDevelopment.inventorySytemDDD.Orders.Order.Infrastructure.hibernate.HibernateOrderRepository"/>
 
     <bean id="SpringApplicationEventBus" class="com.webDevelopment.inventorySytemDDD.Shared.Infrastructure.Bus.Event.Spring.SpringApplicationEventBus"/>
 
@@ -45,10 +45,10 @@
         <constructor-arg ref="HibernateProductColorRepository"/>
     </bean>
 
-<!--    <bean id="SaleOrderCreator" class="com.webDevelopment.inventorySytemDDD.Orders.Order.Application.Create.Sale.SaleOrderCreator">-->
-<!--        <constructor-arg ref="HibernateOrderRepository"/>-->
-<!--        <constructor-arg ref="SpringApplicationEventBus"/>-->
-<!--    </bean>-->
+    <bean id="SaleOrderCreator" class="com.webDevelopment.inventorySytemDDD.Orders.Order.Application.Create.Sale.SaleOrderCreator">
+        <constructor-arg ref="HibernateOrderRepository"/>
+        <constructor-arg ref="SpringApplicationEventBus"/>
+    </bean>
 
     <bean id="ProductAddProductColor" class="com.webDevelopment.inventorySytemDDD.Products.Product.Application.AddProductColor.ProductAddProductColor">
         <constructor-arg ref="HibernateProductRepository"/>

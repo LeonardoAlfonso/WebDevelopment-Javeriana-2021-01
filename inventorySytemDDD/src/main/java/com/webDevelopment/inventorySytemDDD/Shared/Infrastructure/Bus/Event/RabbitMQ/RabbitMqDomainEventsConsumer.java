@@ -2,33 +2,13 @@ package com.webDevelopment.inventorySytemDDD.Shared.Infrastructure.Bus.Event.Rab
 
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer;
-import org.springframework.amqp.rabbit.listener.RabbitListenerEndpointRegistry;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-import java.util.Set;
-
+@Component
 public class RabbitMqDomainEventsConsumer {
 
-    private final String CONSUMER_NAME = "domain_events_consumer";
-    RabbitListenerEndpointRegistry registry;
-
-    public RabbitMqDomainEventsConsumer(RabbitListenerEndpointRegistry registry) {
-        this.registry = registry;
-    }
-
-    public void consume() {
-        Set<String> ids = registry.getListenerContainerIds();
-//        AbstractMessageListenerContainer container = (AbstractMessageListenerContainer) registry.getListenerContainer(null);
-
-//        container.addQueueNames("update_quantity_on_order_created");
-//
-//        container.start();
-    }
-
-    @RabbitListener(id = CONSUMER_NAME, autoStartup = "false")
+    @RabbitListener(queues = {"update_quantity_on_order_created","ssss"})
     public void consumer(Message message) throws Exception {
         String serializedMessage = new String(message.getBody());
     }
-
 }

@@ -20,6 +20,6 @@ public class TestCommand implements ConsoleCommand {
 //            }
 //            System.out.println("Soy la perra Test Command");
 //        }
-        consumer.consume();
+//        consumer.consume();
     }
 }

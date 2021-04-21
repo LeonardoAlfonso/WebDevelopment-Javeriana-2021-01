@@ -17,8 +17,8 @@ public class InventorySytemDddApplication {
 
 	public static void main(String[] args) throws InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
 		SpringApplication.run(InventorySytemDddApplication.class, args);
-		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("rabbitDependencies.xml");
-		ConsoleCommand command = applicationContext.getBean(TestCommand.class);
-		command.execute();
+//		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("rabbitDependencies.xml");
+//		ConsoleCommand command = applicationContext.getBean(TestCommand.class);
+//		command.execute();
 	}
 }
