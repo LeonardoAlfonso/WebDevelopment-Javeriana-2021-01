@@ -23,7 +23,6 @@ public class RabbitMqEventBus implements EventBus {
     private void publish(DomainEvent domainEvent) {
         try {
             this.publisher.publish(domainEvent, exchangeName);
-            System.out.println("Mensaje publicado");
         } catch (AmqpException error) {
             System.err.println("Error Publicando: " + error.toString());
             //TODO:: Implementar un Failover de Rabbit

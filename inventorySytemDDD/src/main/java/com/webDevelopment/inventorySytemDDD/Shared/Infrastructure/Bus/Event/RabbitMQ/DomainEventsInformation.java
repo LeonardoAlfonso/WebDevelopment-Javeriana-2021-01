@@ -1,52 +1,32 @@
 package com.webDevelopment.inventorySytemDDD.Shared.Infrastructure.Bus.Event.RabbitMQ;
 
+import com.webDevelopment.inventorySytemDDD.Products.ProductColor.Application.UpdateQuantity.UpdateQuantityOnOrderCreated;
 import com.webDevelopment.inventorySytemDDD.Shared.Domain.Bus.Event.DomainEvent;
-import org.reflections.Reflections;
+import com.webDevelopment.inventorySytemDDD.Shared.Domain.Orders.OrderCreatedDomainEvent;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 
-@Service
 public class DomainEventsInformation {
-    HashMap<String, Class<? extends DomainEvent>> indexedDomainEvents;
+    private final HashMap<String, Class<? extends DomainEvent>>     indexedDomainEvents = new HashMap<>();
+    private final HashMap<String, Class<?>> domainEventSubscribers = new HashMap<>();
 
     public DomainEventsInformation() {
-        Reflections reflections = new Reflections("com.webDevelopment.inventorySystemDDD");
-        Set<Class<? extends DomainEvent>> classes     = reflections.getSubTypesOf(DomainEvent.class);
-        try {
-            indexedDomainEvents = formatEvents(classes);
-        } catch (NoSuchMethodException | IllegalAccessException | InstantiationException | InvocationTargetException e) {
-            e.printStackTrace();
-        }
+        indexedDomainEvents.put("order.created", OrderCreatedDomainEvent.class);
+        domainEventSubscribers.put("webDevelopment.inventorySystemDDD.Products.ProductColor.update_quantity_on_order_created", UpdateQuantityOnOrderCreated.class);
     }
 
-    public Class<? extends DomainEvent> forName(String name) {
+    public Class<? extends DomainEvent> getDomainEvent(String name) {
         return indexedDomainEvents.get(name);
     }
 
-    public String forClass(Class<? extends DomainEvent> domainEventClass) {
-        return indexedDomainEvents.entrySet()
-                .stream()
-                .filter(entry -> Objects.equals(entry.getValue(), domainEventClass))
-                .map(Map.Entry::getKey)
-                .findFirst().orElse("");
+    public boolean validateEventSubscriber(String name) {
+        return domainEventSubscribers.containsKey(name);
     }
 
-    private HashMap<String, Class<? extends DomainEvent>> formatEvents(
-            Set<Class<? extends DomainEvent>> domainEvents
-    ) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
-        HashMap<String, Class<? extends DomainEvent>> events = new HashMap<>();
-
-        for (Class<? extends DomainEvent> domainEvent : domainEvents) {
-            DomainEvent nullInstance = domainEvent.getConstructor().newInstance();
-
-            events.put((String) domainEvent.getMethod("eventName").invoke(nullInstance), domainEvent);
-        }
-
-        return events;
+    public Class<?> getEventSubscriber(String name) {
+        return domainEventSubscribers.get(name);
     }
 }

@@ -74,4 +74,10 @@
         <constructor-arg ref="DomainEventsInformation"/>
     </bean>
 
+    <bean id="RabbitMqDomainEventsConsumer" class="com.webDevelopment.inventorySytemDDD.Shared.Infrastructure.Bus.Event.RabbitMQ.RabbitMqDomainEventsConsumer">
+        <constructor-arg ref="DomainEventJsonDeserializer"/>
+        <constructor-arg ref="DomainEventsInformation"/>
+    </bean>
+
+
 </beans>

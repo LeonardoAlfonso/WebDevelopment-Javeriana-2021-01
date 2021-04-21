@@ -21,7 +21,7 @@ public final class DomainEventJsonDeserializer {
         HashMap<String, Serializable> eventData        = this.jsonDecode(body);
         HashMap<String, Serializable> data             = (HashMap<String, Serializable>) eventData.get("data");
         HashMap<String, Serializable> attributes       = (HashMap<String, Serializable>) data.get("attributes");
-        Class<? extends DomainEvent>  domainEventClass = information.forName((String) data.get("type"));
+        Class<? extends DomainEvent>  domainEventClass = information.getDomainEvent((String) data.get("type"));
 
         DomainEvent nullInstance = domainEventClass.getConstructor().newInstance();
 
