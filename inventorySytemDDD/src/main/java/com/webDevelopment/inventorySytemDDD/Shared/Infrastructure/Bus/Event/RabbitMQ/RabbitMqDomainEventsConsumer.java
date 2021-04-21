@@ -11,18 +11,21 @@ import org.springframework.stereotype.Component;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.HashMap;
 
 @Component
 public class RabbitMqDomainEventsConsumer {
 
     private final DomainEventJsonDeserializer deserializer;
     private final DomainEventsInformation information;
+    @Autowired
+    private final ApplicationContext context;
 
     public RabbitMqDomainEventsConsumer(DomainEventJsonDeserializer deserializer,
-                                        DomainEventsInformation information) {
+                                        DomainEventsInformation information,
+                                        ApplicationContext context) {
         this.deserializer = deserializer;
         this.information = information;
+        this.context = context;
     }
 
     @RabbitListener(queues = "#{'${rabbitmq.queue.names}'.split(',')}")
