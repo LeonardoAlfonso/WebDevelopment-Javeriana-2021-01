@@ -9,7 +9,7 @@ public class CustomUUID implements Serializable {
     private String value;
 
     public CustomUUID(String value) {
-//        this.validate(value);
+        this.validate(value);
         this.value = value;
     }
 

@@ -12,6 +12,11 @@ repositories {
 	mavenCentral()
 }
 
+apply plugin: 'application'
+
+mainClassName = 'com.webDevelopment.inventorySytemDDD.InventorySytemDddApplication'
+
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 
@@ -21,7 +26,7 @@ dependencies {
 	implementation 'com.sun.xml.bind:jaxb-impl:2.3.2'
 	implementation 'javax.xml.bind:jaxb-api:2.3.1'
 	compile 'org.mariadb.jdbc:mariadb-java-client:2.7.2'
-
+	implementation 'org.springframework.boot:spring-boot-starter-amqp'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
@@ -29,3 +34,4 @@ dependencies {
 test {
 	useJUnitPlatform()
 }
+

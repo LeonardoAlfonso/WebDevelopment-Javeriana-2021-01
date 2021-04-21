@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="Register" class="org.springframework.amqp.rabbit.listener.RabbitListenerEndpointRegistry"/>
+
+    <bean id="RabbitConsumer" class="com.webDevelopment.inventorySytemDDD.Shared.Infrastructure.Bus.Event.RabbitMQ.RabbitMqDomainEventsConsumer">
+        <constructor-arg ref="Register"/>
+    </bean>
+
+    <bean id="CommandConsumer" class="com.webDevelopment.inventorySytemDDD.Shared.Infrastructure.Commands.TestCommand">
+        <constructor-arg ref="RabbitConsumer"/>
+    </bean>
+
+</beans>
