@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class RabbitMqDomainEventsConsumer {
 
-    @RabbitListener(queues = {"update_quantity_on_order_created","ssss"})
+    @RabbitListener(queues = "#{'${rabbitmq.queue.names}'.split(',')}")
     public void consumer(Message message) throws Exception {
         String serializedMessage = new String(message.getBody());
     }
