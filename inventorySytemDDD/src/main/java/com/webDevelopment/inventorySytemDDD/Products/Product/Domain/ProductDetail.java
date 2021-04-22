@@ -1,26 +1,23 @@
 package com.webDevelopment.inventorySytemDDD.Products.Product.Domain;
 
-import com.webDevelopment.inventorySytemDDD.Products.Product.Domain.ValueObjects.ProductDetailDescription;
-import com.webDevelopment.inventorySytemDDD.Products.Product.Domain.ValueObjects.ProductDetailId;
-
 import java.util.HashMap;
 import java.util.Objects;
 
 public class ProductDetail
 {
-    private ProductDetailId productDetailId;
-    private ProductDetailDescription productDetailDescription;
+    private String productDetailId;
+    private String productDetailDescription;
 
-    public ProductDetail(ProductDetailId productDetailId, ProductDetailDescription productDetailDescription) {
+    public ProductDetail(String productDetailId, String productDetailDescription) {
         this.productDetailId = productDetailId;
         this.productDetailDescription = productDetailDescription;
     }
 
-    public HashMap<String, String> data()
+    public HashMap<String, Object> data()
     {
-        HashMap<String, String> data = new HashMap<String, String>() {{
-            put("id", productDetailId.value());
-            put("detail", productDetailDescription.value());
+        HashMap<String, Object> data = new HashMap<String, Object>() {{
+            put("id", productDetailId);
+            put("detail", productDetailDescription);
         }};
         return data;
     }

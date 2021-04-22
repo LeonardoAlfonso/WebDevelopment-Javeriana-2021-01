@@ -1,6 +1,7 @@
 package com.webDevelopment.inventorySytemDDD.Products.Product.Infrastructure;
 
 import com.webDevelopment.inventorySytemDDD.Products.Product.Application.Find.ProductFinder;
+import com.webDevelopment.inventorySytemDDD.Products.Product.Application.Find.ProductFinderResponse;
 import com.webDevelopment.inventorySytemDDD.Products.Product.Domain.Product;
 import com.webDevelopment.inventorySytemDDD.Users.User.Application.Find.UserFinder;
 import com.webDevelopment.inventorySytemDDD.Users.User.Application.Find.UserFinderResponse;
@@ -24,7 +25,7 @@ public class FindProductByIdGetController {
     @GetMapping(value="find/{id}")
     public ResponseEntity<HashMap> execute(@PathVariable("id") String id)
     {
-        Product product = finder.execute(id);
-        return ResponseEntity.status(HttpStatus.OK).body(null);
+        ProductFinderResponse response = finder.execute(id);
+        return ResponseEntity.status(HttpStatus.OK).body(response.response());
     }
 }

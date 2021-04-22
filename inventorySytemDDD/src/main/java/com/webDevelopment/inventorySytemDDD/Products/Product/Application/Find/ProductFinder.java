@@ -14,14 +14,14 @@ public class ProductFinder {
         this.repository = repository;
     }
 
-    public Product execute(String id)
+    public ProductFinderResponse execute(String id)
     {
         Optional<Product> result = repository.find(new ProductId(id).value());
         if (result.isEmpty())
         {
-            throw new RuntimeException("Error");
+            throw new RuntimeException("Error"); //TODO: Excepción de dominio
         }
         Product product = result.get();
-        return product;
+        return new ProductFinderResponse(product);
     }
 }

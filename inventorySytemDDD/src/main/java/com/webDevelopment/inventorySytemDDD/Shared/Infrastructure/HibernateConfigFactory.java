@@ -23,23 +23,15 @@ public class HibernateConfigFactory {
     @Bean("session-factory")
     public LocalSessionFactoryBean sessionFactory()
     {
-        String m = "";
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-        try{
-            sessionFactory.setDataSource(dataSource());
-            sessionFactory.setHibernateProperties(hibernateProperties());
+        sessionFactory.setDataSource(dataSource());
+        sessionFactory.setHibernateProperties(hibernateProperties());
 
-            FileSystemResource resource4 = new FileSystemResource("./src/main/java/com/webDevelopment/inventorySytemDDD/Products/Product/Infrastructure/hibernate/CustomTypes.hbm.xml");
-            FileSystemResource resource1 = new FileSystemResource("./src/main/java/com/webDevelopment/inventorySytemDDD/Products/Product/Infrastructure/hibernate/Product.hbm.xml");
-            FileSystemResource resource2 = new FileSystemResource("./src/main/java/com/webDevelopment/inventorySytemDDD/Products/ProductColor/Infrastructure/hibernate/ProductColor.hbm.xml");
-            FileSystemResource resource3 = new FileSystemResource("./src/main/java/com/webDevelopment/inventorySytemDDD/Orders/Order/Infrastructure/hibernate/Order.hbm.xml");
+        FileSystemResource resource1 = new FileSystemResource("./src/main/java/com/webDevelopment/inventorySytemDDD/Products/Product/Infrastructure/hibernate/Product.hbm.xml");
+        FileSystemResource resource2 = new FileSystemResource("./src/main/java/com/webDevelopment/inventorySytemDDD/Products/ProductColor/Infrastructure/hibernate/ProductColor.hbm.xml");
+        FileSystemResource resource3 = new FileSystemResource("./src/main/java/com/webDevelopment/inventorySytemDDD/Orders/Order/Infrastructure/hibernate/Order.hbm.xml");
 
-            sessionFactory.setMappingLocations(resource1, resource2, resource3, resource4);
-        }
-        catch (Throwable e)
-        {
-            m = e.getMessage();
-        }
+        sessionFactory.setMappingLocations(resource1, resource2, resource3);
         return sessionFactory;
     }
 

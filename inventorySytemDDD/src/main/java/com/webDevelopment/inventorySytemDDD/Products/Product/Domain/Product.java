@@ -4,7 +4,9 @@ import com.webDevelopment.inventorySytemDDD.Products.Product.Domain.ValueObjects
 import com.webDevelopment.inventorySytemDDD.Shared.Domain.Products.ProductColorId;
 import com.webDevelopment.inventorySytemDDD.Shared.Domain.Products.ProductId;
 
+import javax.swing.text.html.Option;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Product
 {
@@ -12,22 +14,22 @@ public class Product
     private ProductName productName;
     private ProductDescription productDescription;
     private ProductTotalSales productTotalSales;
-    private ProductDetail productDetail;
-//    List<ProductDetailId> productDetailIds;
+    private Optional<ProductDetail> productDetail;
+    private Optional<List<ProductColorDetails>> productColors;
 
     public Product(ProductId productId,
                    ProductName productName,
                    ProductDescription productDescription,
                    ProductTotalSales productTotalSales,
-                   ProductDetail productDetail
-//                   List<ProductDetailId> productDetailIds
+                   ProductDetail productDetail,
+                   List<ProductColorDetails> productColors
     ) {
         this.productId = productId;
         this.productName = productName;
         this.productDescription = productDescription;
         this.productTotalSales = productTotalSales;
-        this.productDetail = productDetail;
-//        this.productDetailIds = productDetailIds;
+        this.productDetail = Optional.ofNullable(productDetail);
+        this.productColors = Optional.ofNullable(productColors);
     }
 
     public static Product create(ProductId productId,
@@ -35,7 +37,7 @@ public class Product
                                  ProductDescription productDescription,
                                  ProductTotalSales productTotalSales)
     {
-        return new Product(productId, productName, productDescription, productTotalSales, null);
+        return new Product(productId, productName, productDescription, productTotalSales, null, null);
     }
 
     public void addProductColor(ProductColorId productColorId){
@@ -58,9 +60,9 @@ public class Product
                 Objects.equals(productDescription, product.productDescription);
     }
 
-    public HashMap<String, String> data()
+    public HashMap<String, Object> data()
     {
-        HashMap<String, String> data = new HashMap<String, String>() {{
+        HashMap<String, Object> data = new HashMap<String, Object>() {{
             put("id", productId.value());
             put("name", productName.value());
             put("description", productDescription.value());
@@ -70,6 +72,22 @@ public class Product
 
     public ProductTotalSales getProductTotalSales() {
         return productTotalSales;
+    }
+
+    public Optional<HashMap<String, Object>> getProductDetail(){
+        HashMap<String, Object> response = (this.productDetail.isPresent()) ? this.productDetail.get().data() : null;
+        return Optional.ofNullable(response);
+    }
+
+    public Optional<List<HashMap<String, Object>>> getProductColors(){
+        Optional<List<HashMap<String, Object>>> response = Optional.empty();
+
+        if (this.productColors.isPresent())
+        {
+            response = Optional.of(this.productColors.get().stream().map(color -> color.data()).collect(Collectors.toList()));
+        }
+
+        return response;
     }
 
     private Product(){}

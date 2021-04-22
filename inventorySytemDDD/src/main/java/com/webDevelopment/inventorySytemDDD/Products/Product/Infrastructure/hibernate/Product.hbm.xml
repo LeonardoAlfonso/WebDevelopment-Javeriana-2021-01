@@ -18,15 +18,14 @@
         </component>
 
         <property name="productDetail" column="details" access="field">
-            <type name="json_type">
-                <param name="detail">com.webDevelopment.inventorySytemDDD.Products.Product.Domain.ProductDetail</param>
+            <type name="com.webDevelopment.inventorySytemDDD.Products.Product.Infrastructure.hibernate.ProductDetailCustomType">
             </type>
         </property>
 
-<!--        <property name="productDetail" column="details" access="field">-->
-<!--            <type name="json_string">-->
-<!--                <param name="list_of">com.webDevelopment.inventorySytemDDD.Products.Product.Domain.ProductDetail</param>-->
-<!--            </type>-->
-<!--        </property>-->
+        <property name="productColors" column="colors" access="field">
+            <type name="com.webDevelopment.inventorySytemDDD.Products.Product.Infrastructure.hibernate.ProductColorsCustomType">
+            </type>
+        </property>
+
     </class>
 </hibernate-mapping>

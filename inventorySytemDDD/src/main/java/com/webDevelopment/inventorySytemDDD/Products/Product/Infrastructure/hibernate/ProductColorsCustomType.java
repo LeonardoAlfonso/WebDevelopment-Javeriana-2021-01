@@ -1,41 +1,40 @@
 package com.webDevelopment.inventorySytemDDD.Products.Product.Infrastructure.hibernate;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.PropertyAccessor;
-import com.fasterxml.jackson.databind.JavaType;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.webDevelopment.inventorySytemDDD.Products.Product.Domain.ProductColorDetails;
 import com.webDevelopment.inventorySytemDDD.Products.Product.Domain.ProductDetail;
-import com.webDevelopment.inventorySytemDDD.Products.Product.Domain.ValueObjects.ProductDetailDescription;
-import com.webDevelopment.inventorySytemDDD.Products.Product.Domain.ValueObjects.ProductDetailId;
 import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
-import org.hibernate.usertype.DynamicParameterizedType;
 import org.hibernate.usertype.UserType;
 
+import javax.swing.text.html.Option;
 import java.io.IOException;
 import java.io.Serializable;
-import java.io.StringWriter;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
-public class JsonCustomType implements UserType, DynamicParameterizedType {
-
+public class ProductColorsCustomType implements UserType {
     @Override
     public int[] sqlTypes() {
-        return new int[] {Types.LONGVARCHAR};
+        return new int[] {Types.LONGNVARCHAR };
     }
 
     @Override
     public Class returnedClass() {
-        return ProductDetail.class;
+        return List.class;
     }
 
     @Override
     public boolean equals(Object x, Object y) throws HibernateException {
-        return Objects.equals(x,y);
+        return Objects.equals(x, y);
     }
 
     @Override
@@ -45,34 +44,39 @@ public class JsonCustomType implements UserType, DynamicParameterizedType {
 
     @Override
     public Object nullSafeGet(ResultSet rs, String[] names, SharedSessionContractImplementor session, Object owner) throws HibernateException, SQLException {
-        HashMap<String, String> mapper;
-        ProductDetail response = null;
+        List<ProductColorDetails> response = null;
         try {
-            String value  = rs.getString(names[0]);
-            mapper = new ObjectMapper().readValue(value, HashMap.class);
-            response = new ProductDetail(new ProductDetailId(mapper.get("id")), new ProductDetailDescription(mapper.get("details")));
+            Optional<String> value = Optional.ofNullable(rs.getString(names[0]));
+
+            if (value.isPresent())
+            {
+                List<HashMap<String, Object>> objects = new ObjectMapper().readValue(value.get(), List.class);
+                response = objects.stream().map(color->
+                        new ProductColorDetails((String)color.get("id"), (String)color.get("name"), (Integer)color.get("quantity"), (Boolean)color.get("hasStock"), (String)color.get("rgb"))
+                ).collect(Collectors.toList());
+            }
         }
         catch (Exception e) {
             throw new HibernateException("Error at reading map", e);
         }
-
-        return response;
+        return Optional.ofNullable(response);
     }
 
     @Override
     public void nullSafeSet(PreparedStatement st, Object value, int index, SharedSessionContractImplementor session) throws HibernateException, SQLException {
+        Optional<List<ProductColorDetails>> colors = (value == null) ? Optional.empty() : (Optional<List<ProductColorDetails>>)value;
         try {
-            if (value == null) {
+            if (colors.isEmpty()) {
                 st.setNull(index, Types.VARCHAR);
             }
             else {
                 ObjectMapper mapper = new ObjectMapper();
-                ProductDetail detail = (ProductDetail)value;
-                String serializedObject = mapper.writeValueAsString(detail.data());
-                st.setString(index, serializedObject);
+                List<HashMap<String, Object>> objects = colors.get().stream().map(color -> color.data()).collect(Collectors.toList());
+                String serializedList = mapper.writeValueAsString(objects).replace("\\","");
+                st.setString(index, serializedList);
             }
-        } catch (IOException e) {
-            throw new HibernateException("Exception serializing value " + value, e);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
         }
     }
 
@@ -99,17 +103,5 @@ public class JsonCustomType implements UserType, DynamicParameterizedType {
     @Override
     public Object replace(Object original, Object target, Object owner) throws HibernateException {
         return deepCopy(original);
-    }
-
-    @Override
-    public void setParameterValues(Properties parameters) {
-        try {
-            Class<?> entityClass = Class.forName(parameters.getProperty("detail"));
-
-            JavaType valueType = new ObjectMapper().getTypeFactory().constructCollectionType(ArrayList.class, entityClass);
-//            classType = List.class;
-        } catch (ClassNotFoundException e) {
-            throw new IllegalArgumentException(e);
-        }
     }
 }
