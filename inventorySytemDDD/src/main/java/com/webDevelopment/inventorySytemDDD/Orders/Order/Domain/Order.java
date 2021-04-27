@@ -48,8 +48,9 @@ public class Order extends AggregateRoot {
     public static Order createBuyOrder(OrderId orderId, ProductColorId productColorId, UserId userId, ProductId productId, OrderQuantity quantity,
                                         OrderTotal total)
     {
+        OrderIsSale orderIsSale = new OrderIsSale(false);
         Order order = new Order (orderId, productColorId, userId, productId, quantity, new OrderIsSale(false), total);
-        //TODO: Record evento de orden creada
+        order.record(new OrderCreatedDomainEvent(productColorId.value(), quantity.value(), orderIsSale.value()));
         return order;
     }
 

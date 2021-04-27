@@ -15,7 +15,7 @@ import java.util.Optional;
 
 public class ProductColorTest {
 
-    @Test
+    /*@Test
     void should_update_quantity_productColor() {
         ProductColor productColor = new ProductColor(new ProductColorId("17b69c93-9fc1-476d-a143-051435f903dd"),
                 new ProductId("d9942df6-c311-4bc5-8a02-e2797ea2dc82"),
@@ -40,7 +40,7 @@ public class ProductColorTest {
 
         useCase.execute("17b69c93-9fc1-476d-a143-051435f903dd", 100d, true);
         verify(repository, atLeastOnce()).update("17b69c93-9fc1-476d-a143-051435f903dd", updatedProductColor);
-    }
+    }*/
 
 
 }

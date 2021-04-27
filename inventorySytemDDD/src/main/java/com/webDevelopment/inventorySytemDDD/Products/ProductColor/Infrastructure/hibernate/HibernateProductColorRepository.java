@@ -33,6 +33,8 @@ public class HibernateProductColorRepository implements ProductColorRepository {
 
     @Override
     public void save(ProductColor productColor) {
-
+        sessionFactory.getCurrentSession().save(productColor);
+        sessionFactory.getCurrentSession().flush();
+        sessionFactory.getCurrentSession().clear();
     }
 }

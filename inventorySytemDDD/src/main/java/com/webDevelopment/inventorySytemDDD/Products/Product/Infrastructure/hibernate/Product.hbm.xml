@@ -17,10 +17,15 @@
             <property name="value" column="description" access="field" type="string"/>
         </component>
 
-        <property name="existingColors" column="existing_colors" access="field">
-            <type name="json_string">
-                <param name="list_of">com.webDevelopment.inventorySytemDDD.Shared.Domain.Products.ProductColorId</param>
+        <property name="productDetail" column="details" access="field">
+            <type name="com.webDevelopment.inventorySytemDDD.Products.Product.Infrastructure.hibernate.ProductDetailCustomType">
             </type>
         </property>
+
+        <property name="productColors" column="colors" access="field">
+            <type name="com.webDevelopment.inventorySytemDDD.Products.Product.Infrastructure.hibernate.ProductColorsCustomDetail">
+            </type>
+        </property>
+
     </class>
 </hibernate-mapping>

@@ -1,4 +1,4 @@
-package com.webDevelopment.inventorySytemDDD.Products.ProductColor.Infrastructure;
+package com.webDevelopment.inventorySytemDDD.Products.ProductColor.Infrastructure.Controllers;
 
 import com.webDevelopment.inventorySytemDDD.Products.ProductColor.Application.Find.ProductColorFinder;
 import com.webDevelopment.inventorySytemDDD.Products.ProductColor.Domain.ProductColor;

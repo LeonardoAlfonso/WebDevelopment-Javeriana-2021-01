@@ -2,13 +2,16 @@ package com.webDevelopment.inventorySytemDDD.Products.ProductColor.Domain;
 
 import com.webDevelopment.inventorySytemDDD.Products.ProductColor.Domain.Exceptions.NotAvailableBalance;
 import com.webDevelopment.inventorySytemDDD.Products.ProductColor.Domain.ValueObjects.*;
+import com.webDevelopment.inventorySytemDDD.Shared.Domain.Aggregate.AggregateRoot;
+import com.webDevelopment.inventorySytemDDD.Shared.Domain.Products.ProductColorCreatedDomainEvent;
 import com.webDevelopment.inventorySytemDDD.Shared.Domain.Products.ProductColorId;
+import com.webDevelopment.inventorySytemDDD.Shared.Domain.Products.ProductColorUpdatedDomainEvent;
 import com.webDevelopment.inventorySytemDDD.Shared.Domain.Products.ProductId;
 
 import java.util.HashMap;
 import java.util.Objects;
 
-public class ProductColor {
+public class ProductColor extends AggregateRoot {
 
     private ProductColorId productColorId;
     private ProductId productId;
@@ -32,6 +35,19 @@ public class ProductColor {
         this.productColorRBG = productColorRBG;
     }
 
+    public static ProductColor create(ProductColorId productColorId,
+                               ProductId productId,
+                               ProductColorName productColorName,
+                               ProductColorQuantity productColorQuantity,
+                               ProductColorIsStock productColorIsStock,
+                               ProductColorRBG productColorRBG) {
+        ProductColor productColor = new ProductColor(productColorId, productId, productColorName, productColorQuantity, productColorIsStock, productColorRBG);
+        productColor.record(new ProductColorCreatedDomainEvent(productId.value(), productColorId.value(),
+                productColorName.value(), productColorQuantity.value(), productColorIsStock.value(),
+                productColorRBG.value()));
+        return productColor;
+    }
+
     public void saleProductColor(ProductColorQuantity productColorQuantity) {
         int result = this.productColorQuantity.value().compareTo(productColorQuantity.value());
         if(result < 0) {
@@ -42,6 +58,10 @@ public class ProductColor {
         if(result == 0) {
             this.changeIsStock(false);
         }
+        this.record(new ProductColorUpdatedDomainEvent(this.productId.value(),
+                this.productColorId.value(), this.productColorName.value(),
+                this.productColorQuantity.value(), this.productColorIsStock.value(),
+                this.productColorRBG.value()));
     }
 
     public void buyProductColor(ProductColorQuantity productColorQuantity) {
@@ -51,6 +71,10 @@ public class ProductColor {
         if(result >= 0) {
             this.changeIsStock(true);
         }
+        this.record(new ProductColorUpdatedDomainEvent(this.productId.value(),
+                this.productColorId.value(), this.productColorName.value(),
+                this.productColorQuantity.value(), this.productColorIsStock.value(),
+                this.productColorRBG.value()));
     }
 
     private void changeIsStock(Boolean newValue) {

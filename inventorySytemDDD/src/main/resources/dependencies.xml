@@ -33,6 +33,10 @@
         <constructor-arg ref="HibernateProductRepository"/>
     </bean>
 
+    <bean id="ProductAddProductDetail" class="com.webDevelopment.inventorySytemDDD.Products.Product.Application.AddProductDetail.ProductAddProductDetail">
+        <constructor-arg ref="HibernateProductRepository"/>
+    </bean>
+
     <bean id="ProductFinder" class="com.webDevelopment.inventorySytemDDD.Products.Product.Application.Find.ProductFinder">
         <constructor-arg ref="HibernateProductRepository"/>
     </bean>
@@ -45,7 +49,17 @@
         <constructor-arg ref="HibernateProductColorRepository"/>
     </bean>
 
+    <bean id="ProductColorCreator" class="com.webDevelopment.inventorySytemDDD.Products.ProductColor.Application.Create.ProductColorCreator">
+        <constructor-arg ref="HibernateProductColorRepository"/>
+        <constructor-arg ref="RabbitMqEventBus"/>
+    </bean>
+
     <bean id="SaleOrderCreator" class="com.webDevelopment.inventorySytemDDD.Orders.Order.Application.Create.Sale.SaleOrderCreator">
+        <constructor-arg ref="HibernateOrderRepository"/>
+        <constructor-arg ref="RabbitMqEventBus"/>
+    </bean>
+
+    <bean id="PurchaseOrderCreator" class="com.webDevelopment.inventorySytemDDD.Orders.Order.Application.Create.Purchase.PurchaseOrderCreator">
         <constructor-arg ref="HibernateOrderRepository"/>
         <constructor-arg ref="RabbitMqEventBus"/>
     </bean>
@@ -56,6 +70,7 @@
 
     <bean id="ProductColorUpdateQuantity" class="com.webDevelopment.inventorySytemDDD.Products.ProductColor.Application.UpdateQuantity.ProductColorUpdateQuantity">
         <constructor-arg ref="HibernateProductColorRepository"/>
+        <constructor-arg ref="RabbitMqEventBus"/>
     </bean>
 
     <bean id="UpdateQuantityOnOrderCreated" class="com.webDevelopment.inventorySytemDDD.Products.ProductColor.Application.UpdateQuantity.UpdateQuantityOnOrderCreated">

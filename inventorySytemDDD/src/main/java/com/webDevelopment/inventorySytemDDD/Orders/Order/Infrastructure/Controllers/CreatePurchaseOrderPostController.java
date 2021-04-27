@@ -1,6 +1,6 @@
-package com.webDevelopment.inventorySytemDDD.Orders.Order.Infrastructure;
+package com.webDevelopment.inventorySytemDDD.Orders.Order.Infrastructure.Controllers;
 
-import com.webDevelopment.inventorySytemDDD.Orders.Order.Application.Create.Sale.SaleOrderCreator;
+import com.webDevelopment.inventorySytemDDD.Orders.Order.Application.Create.Purchase.PurchaseOrderCreator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/orders")
-public class CreateOrderPostController {
+public class CreatePurchaseOrderPostController {
 
     @Autowired
-    private SaleOrderCreator creator;
+    private PurchaseOrderCreator creator;
 
-    @PostMapping(value = "/create", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/createPurchase", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity execute(@RequestBody Request request) {
         creator.execute(request.getId(), request.getIdProduct(), request.getIdProductColor(), request.getIdUser(), request.getQuantity(), request.getTotal());
         return ResponseEntity.status(HttpStatus.CREATED).body(null);
