@@ -1,5 +1,6 @@
-package com.webDevelopment.inventorySytemDDD.Products.ProductColor.Application.UpdateQuantity;
+package com.webDevelopment.inventorySytemDDD.Products.ProductColor.Infrastructure.DomainEventSubscribers;
 
+import com.webDevelopment.inventorySytemDDD.Products.ProductColor.Application.UpdateQuantity.ProductColorUpdateQuantity;
 import com.webDevelopment.inventorySytemDDD.Shared.Domain.Bus.Event.DomainEventSubscriber;
 import com.webDevelopment.inventorySytemDDD.Shared.Domain.Orders.OrderCreatedDomainEvent;
 import org.springframework.context.event.EventListener;

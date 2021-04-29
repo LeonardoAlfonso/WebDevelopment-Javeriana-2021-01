@@ -14,6 +14,15 @@ public class ProductColorUpdatedDomainEvent extends DomainEvent {
     private final boolean hasStock;
     private final String rgb;
 
+    public ProductColorUpdatedDomainEvent() {
+        super(null);
+        this.productColorId = "";
+        this.name = "";
+        this.quantity = 0;
+        this.hasStock = true;
+        this.rgb = "";
+    }
+
     public ProductColorUpdatedDomainEvent(String aggregateId, String productColorId, String name, double quantity, boolean hasStock, String rgb) {
         super(aggregateId);
         this.productColorId = productColorId;
@@ -51,7 +60,7 @@ public class ProductColorUpdatedDomainEvent extends DomainEvent {
 
     @Override
     public DomainEvent fromPrimitive(String aggregateId, HashMap<String, Serializable> body, String eventId, String occurredOn) {
-        return new ProductColorCreatedDomainEvent(
+        return new ProductColorUpdatedDomainEvent(
                 aggregateId,
                 eventId,
                 occurredOn,

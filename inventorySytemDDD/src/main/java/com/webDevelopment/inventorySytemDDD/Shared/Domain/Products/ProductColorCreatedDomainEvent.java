@@ -14,6 +14,15 @@ public class ProductColorCreatedDomainEvent extends DomainEvent {
     private final boolean hasStock;
     private final String rgb;
 
+    public ProductColorCreatedDomainEvent() {
+        super(null);
+        this.productColorId = "";
+        this.name = "";
+        this.quantity = 0;
+        this.hasStock = true;
+        this.rgb = "";
+    }
+
     public ProductColorCreatedDomainEvent(String aggregateId, String productColorId, String name, double quantity, boolean hasStock, String rgb) {
         super(aggregateId);
         this.productColorId = productColorId;
@@ -73,5 +82,25 @@ public class ProductColorCreatedDomainEvent extends DomainEvent {
     @Override
     public int hashCode() {
         return Objects.hash(productColorId, name, quantity, hasStock, rgb);
+    }
+
+    public String getProductColorId() {
+        return productColorId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getQuantity() {
+        return quantity;
+    }
+
+    public boolean isHasStock() {
+        return hasStock;
+    }
+
+    public String getRgb() {
+        return rgb;
     }
 }

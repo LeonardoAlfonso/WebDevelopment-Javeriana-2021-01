@@ -68,13 +68,25 @@
         <constructor-arg ref="HibernateProductRepository"/>
     </bean>
 
+    <bean id="ProductUpdateProductColor" class="com.webDevelopment.inventorySytemDDD.Products.Product.Application.UpdateProductColor.ProductUpdateProductColor">
+        <constructor-arg ref="HibernateProductRepository"/>
+    </bean>
+
     <bean id="ProductColorUpdateQuantity" class="com.webDevelopment.inventorySytemDDD.Products.ProductColor.Application.UpdateQuantity.ProductColorUpdateQuantity">
         <constructor-arg ref="HibernateProductColorRepository"/>
         <constructor-arg ref="RabbitMqEventBus"/>
     </bean>
 
-    <bean id="UpdateQuantityOnOrderCreated" class="com.webDevelopment.inventorySytemDDD.Products.ProductColor.Application.UpdateQuantity.UpdateQuantityOnOrderCreated">
+    <bean id="UpdateQuantityOnOrderCreated" class="com.webDevelopment.inventorySytemDDD.Products.ProductColor.Infrastructure.DomainEventSubscribers.UpdateQuantityOnOrderCreated">
         <constructor-arg ref="ProductColorUpdateQuantity"/>
+    </bean>
+
+    <bean id="UpdateProductColorOnProductColorUpdated" class="com.webDevelopment.inventorySytemDDD.Products.Product.Infrastructure.DomainEventSubscribers.UpdateProductColorOnProductColorUpdated">
+        <constructor-arg ref="ProductUpdateProductColor"/>
+    </bean>
+
+    <bean id="AddProductColorOnProductColorCreated" class="com.webDevelopment.inventorySytemDDD.Products.Product.Infrastructure.DomainEventSubscribers.AddProductColorOnProductColorCreated">
+        <constructor-arg ref="ProductAddProductColor"/>
     </bean>
 
     <bean id="RabbitMqPublisher" class="com.webDevelopment.inventorySytemDDD.Shared.Infrastructure.Bus.Event.RabbitMQ.RabbitMqPublisher"/>

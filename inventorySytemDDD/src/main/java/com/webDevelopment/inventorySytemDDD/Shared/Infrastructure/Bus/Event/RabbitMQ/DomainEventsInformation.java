@@ -2,6 +2,8 @@ package com.webDevelopment.inventorySytemDDD.Shared.Infrastructure.Bus.Event.Rab
 
 import com.webDevelopment.inventorySytemDDD.Shared.Domain.Bus.Event.DomainEvent;
 import com.webDevelopment.inventorySytemDDD.Shared.Domain.Orders.OrderCreatedDomainEvent;
+import com.webDevelopment.inventorySytemDDD.Shared.Domain.Products.ProductColorCreatedDomainEvent;
+import com.webDevelopment.inventorySytemDDD.Shared.Domain.Products.ProductColorUpdatedDomainEvent;
 
 import java.util.HashMap;
 
@@ -12,7 +14,11 @@ public class DomainEventsInformation {
 
     public DomainEventsInformation () {
         indexedDomainEvents.put("order.created", OrderCreatedDomainEvent.class);
+        indexedDomainEvents.put("product.color.created", ProductColorCreatedDomainEvent.class);
+        indexedDomainEvents.put("product.color.updated", ProductColorUpdatedDomainEvent.class);
         domainEventSubscribers.put("webDevelopment.inventorySystemDDD.Products.ProductColor.update_quantity_on_order_created", "UpdateQuantityOnOrderCreated");
+        domainEventSubscribers.put("webDevelopment.inventorySystemDDD.Products.ProductColor.create_product_color", "AddProductColorOnProductColorCreated");
+        domainEventSubscribers.put("webDevelopment.inventorySystemDDD.Products.ProductColor.update_product_color", "UpdateProductColorOnProductColorUpdated");
     }
 
     public Class<? extends DomainEvent> getDomainEvent(String name) {

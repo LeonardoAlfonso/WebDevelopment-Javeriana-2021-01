@@ -54,9 +54,9 @@ public class Product
                 Objects.equals(productDescription, product.productDescription);
     }
 
-    public HashMap<String, String> data()
+    public HashMap<String, Object> data()
     {
-        HashMap<String, String> data = new HashMap<String, String>() {{
+        HashMap<String, Object> data = new HashMap<String, Object>() {{
             put("id", productId.value());
             put("name", productName.value());
             put("description", productDescription.value());

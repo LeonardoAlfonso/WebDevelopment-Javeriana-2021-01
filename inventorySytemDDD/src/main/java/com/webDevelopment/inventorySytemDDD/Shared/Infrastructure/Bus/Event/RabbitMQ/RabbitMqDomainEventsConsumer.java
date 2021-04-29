@@ -33,8 +33,8 @@ public class RabbitMqDomainEventsConsumer {
         DomainEvent domainEvent = deserializer.deserialize(serializedMessage);
         String queueName = message.getMessageProperties().getConsumerQueue();
         Object subscriber = this.subscriberFor(queueName);
-        Method subscriberOnMethod = subscriber.getClass().getMethod("on", domainEvent.getClass());
         try {
+            Method subscriberOnMethod = subscriber.getClass().getMethod("on", domainEvent.getClass());
             subscriberOnMethod.invoke(subscriber, domainEvent);
         }
         catch (Exception error) {

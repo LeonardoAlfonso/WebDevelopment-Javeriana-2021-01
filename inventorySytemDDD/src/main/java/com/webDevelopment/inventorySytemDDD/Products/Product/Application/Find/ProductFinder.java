@@ -14,7 +14,7 @@ public class ProductFinder {
         this.repository = repository;
     }
 
-    public Product execute(String id)
+    public ProductFinderResponse execute(String id)
     {
         Optional<Product> result = repository.find(new ProductId(id).value());
         if (result.isEmpty())
@@ -22,6 +22,6 @@ public class ProductFinder {
             throw new RuntimeException("Error");
         }
         Product product = result.get();
-        return product;
+        return new ProductFinderResponse(product);
     }
 }

@@ -22,7 +22,7 @@ public class CreateProductColorPostController {
     @PostMapping(value="/create")
     public ResponseEntity<List<HashMap>> execute(@RequestBody Request request)
     {
-        productColorCreator.execute(request.getProductId(), request.getProductColorId(), request.getName(),
+        productColorCreator.execute(request.getProductColorId(), request.productId, request.getName(),
                 request.getQuantity(), request.isHasStock(), request.getRgb());
         return ResponseEntity.status(HttpStatus.CREATED).body(null);
     }

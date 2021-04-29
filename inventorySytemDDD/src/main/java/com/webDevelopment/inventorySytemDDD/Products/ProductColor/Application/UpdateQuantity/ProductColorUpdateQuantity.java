@@ -33,6 +33,7 @@ public class ProductColorUpdateQuantity {
             productColor.buyProductColor(new ProductColorQuantity(quantity));
         }
         this.repository.update(productColor);
+        this.eventBus.publish(productColor.pullDomainEvents());
     }
 
 }

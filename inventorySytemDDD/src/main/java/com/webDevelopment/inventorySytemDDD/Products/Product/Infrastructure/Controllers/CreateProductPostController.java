@@ -1,4 +1,4 @@
-package com.webDevelopment.inventorySytemDDD.Products.Product.Infrastructure;
+package com.webDevelopment.inventorySytemDDD.Products.Product.Infrastructure.Controllers;
 
 
 import com.webDevelopment.inventorySytemDDD.Products.Product.Application.Create.ProductCreator;

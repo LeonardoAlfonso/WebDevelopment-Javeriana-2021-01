@@ -1,4 +1,4 @@
-package com.webDevelopment.inventorySytemDDD.Products.Product.Application.AddProductColor;
+package com.webDevelopment.inventorySytemDDD.Products.Product.Application.UpdateProductColor;
 
 import com.webDevelopment.inventorySytemDDD.Products.Product.Domain.Exceptions.ProductNotExist;
 import com.webDevelopment.inventorySytemDDD.Products.Product.Domain.Ports.ProductRepository;
@@ -7,11 +7,11 @@ import com.webDevelopment.inventorySytemDDD.Products.Product.Domain.ValueObjects
 
 import java.util.Optional;
 
-public class ProductAddProductColor {
+public class ProductUpdateProductColor {
 
     private ProductRepository repository;
 
-    public ProductAddProductColor(ProductRepository repository) {
+    public ProductUpdateProductColor(ProductRepository repository) {
         this.repository = repository;
     }
 
@@ -23,8 +23,7 @@ public class ProductAddProductColor {
             throw new ProductNotExist("The product " + productId + " not exists");
         }
         Product finalProduct = product.get();
-        finalProduct.addProductColorDetail(new ProductColorDetails(productColorId, name, quantity, hasStoke, rgb));
+        finalProduct.updateProductColorDetail(new ProductColorDetails(productColorId, name, quantity, hasStoke, rgb));
         repository.update(finalProduct);
     }
-
 }
