@@ -7,6 +7,6 @@ public class UserId extends CustomUUID {
         super(value);
     }
     private UserId() {
-        super("");
+        super();
     }
 }

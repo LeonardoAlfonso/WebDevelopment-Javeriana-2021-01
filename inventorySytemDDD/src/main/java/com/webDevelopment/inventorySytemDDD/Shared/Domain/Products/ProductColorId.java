@@ -5,7 +5,7 @@ import com.webDevelopment.inventorySytemDDD.Shared.Domain.CustomUUID;
 public class ProductColorId extends CustomUUID  {
 
     private ProductColorId() {
-        super("");
+        super();
     }
 
     public ProductColorId(String value) {

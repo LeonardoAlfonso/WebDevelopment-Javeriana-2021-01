@@ -8,6 +8,6 @@ public class OrderId extends CustomUUID {
     }
 
     private OrderId() {
-        super("");
+        super();
     }
 }
