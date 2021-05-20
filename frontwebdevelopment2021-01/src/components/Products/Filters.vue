@@ -2,8 +2,8 @@
 <section class="filters">
   <ul class="filters-tags">
     <li v-for="filter in filters" :key="filter.color" class="toggle"
-        :class="{ 'isSelected' : filter.selected }">
-      <a @click="activeFilter(filter)">{{ filter.color }}</a>
+        :class="{ 'isSelected' : filter.selected }" @click="activeFilter(filter)">
+      <a>{{ filter.color }}</a>
     </li>
   </ul>
   <input id="search" type="search" placeholder="Buscar..." class="search" @input="handleSearch">
