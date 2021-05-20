@@ -17,7 +17,6 @@ public class ProductAllResponse {
     public List<HashMap> response()
     {
         List<HashMap> response = products.stream().map(p -> p.data()).collect(Collectors.toList());
-        products.stream().filter(p -> p.getProductTotalSales().value() > 2000d).collect(Collectors.toList());
         return response;
     }
 }
