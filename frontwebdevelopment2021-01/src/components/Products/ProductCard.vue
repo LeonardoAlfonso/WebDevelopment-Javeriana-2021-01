@@ -1,6 +1,6 @@
 <template>
   <article class="card">
-    <a href="#" :aria-label="`Ver información del producto ${product.name}`">
+    <a href="#">
       <img :src="pathImage(product.image)" alt="" class="card-img">
       <div class="card-info">
         <h3>{{ product.name }}</h3>
@@ -37,6 +37,12 @@ export default {
 .card a {
   color: #333;
   text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 0.5rem;
+  height: 100%;
 }
 .card:hover,
 .card:focus {
@@ -47,9 +53,10 @@ export default {
   outline: 5px solid black;
 }
 .card-img {
-  width: 100%;
+  width: 50%;
 }
 .card-info {
   padding: 0 1rem 1rem;
+  text-align: justify;
 }
 </style>
