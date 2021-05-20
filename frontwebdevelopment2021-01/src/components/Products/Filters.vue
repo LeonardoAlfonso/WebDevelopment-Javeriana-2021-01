@@ -1,11 +1,11 @@
 <template>
 <section class="filters">
   <ul class="filters-tags">
-    <li v-for="filter in filters" :key="filter.value" class="toggle">
-      <a @click="activeFilter(filter)">{{ filter }}</a>
+    <li v-for="filter in filters" :key="filter.color" class="toggle"
+        :class="{ 'isSelected' : filter.selected }">
+      <a @click="activeFilter(filter)">{{ filter.color }}</a>
     </li>
   </ul>
-  <label for="search" class="sr-only">Buscar</label>
   <input id="search" type="search" placeholder="Buscar..." class="search" @input="handleSearch">
 </section>
 </template>
@@ -15,15 +15,46 @@ export default {
   name: "Filters",
   data() {
     return {
-      filters : ["Azul", "Verde", "Rojo", "Amarillo", "Morado", "Todos"]
+      filters: [
+        {
+          color: "Azul",
+          selected: false
+        },
+        {
+          color: "Verde",
+          selected: false
+        },
+        {
+          color: "Rojo",
+          selected: false
+        },
+        {
+          color: "Amarillo",
+          selected: false
+        },
+        {
+          color: "Morado",
+          selected: false
+        },
+        {
+          color: "Todos",
+          selected: true
+        }
+      ]
     }
   },
   methods: {
-    activeFilter(filter){
-      this.$emit("filter", filter)
+    activeFilter(activeFilter){
+      this.filters.forEach(filter => {
+        filter.selected = (filter.color === activeFilter.color);
+      });
+      this.$emit("filter", activeFilter.color)
     },
     handleSearch(event) {
       this.$emit("search", event.target.value)
+    },
+    isSelected(filter) {
+      return filter.selected
     }
   }
 }
@@ -69,6 +100,11 @@ export default {
   padding: 0.3rem 0.5rem;
   font-size: 1rem;
   border: 1px solid transparent;
+}
+
+.isSelected {
+  background: #3e4045;
+  color: white;
 }
 
 </style>
