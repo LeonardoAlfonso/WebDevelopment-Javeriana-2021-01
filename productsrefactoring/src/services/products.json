@@ -1,0 +1,222 @@
+[
+  {
+    "name": "Camiseta",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia ad deserunt dolorum. Iusto temporibus nobis, esse dignissimos ratione neque laborum.",
+    "image": "Camiseta.jpg",
+    "id": "92cf65d5-9138-49bd-b467-2197e1d21671",
+    "colors": [
+      {
+        "rbg": "#2889af",
+        "name": "Azul",
+        "id": "2a0012c0-52d7-4019-b7f8-917481a61381"
+      },
+      {
+        "rbg": "#28af45",
+        "name": "Verde",
+        "id": "fd07d30b-e9e5-4fca-8f22-ae0291337a67"
+      },
+      {
+        "rbg": "#b92828",
+        "name": "Rojo",
+        "id": "2433d9e8-07bb-40c4-9fcf-098fd238e129"
+      }
+    ]
+  },
+  {
+    "name": "Buso",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam unde molestiae quam consequatur minima repellendus similique! Cupiditate sequi aspernatur unde!",
+    "image": "Buso.jpg",
+    "id": "7323091b-6b68-48bb-b21d-0aadaa361abe",
+    "colors": [
+      {
+        "rbg": "#d6d327",
+        "name": "Amarillo",
+        "id": "2433d9e8-07bb-40c4-9fcf-098fd238e129"
+      },
+      {
+        "rbg": "#7827c4",
+        "name": "Morado",
+        "id": "0460c78c-f1fb-4c3f-8b5f-ea0d1aa3bb2d"
+      }
+    ]
+  },
+  {
+    "name": "Camisa",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate commodi nam asperiores repellat ex beatae necessitatibus odit animi libero itaque?",
+    "image": "Camisa.jpg",
+    "id": "68f9be79-c5a5-4144-9dd8-ee179ef7d276",
+    "colors": [
+      {
+        "rbg": "#d6d327",
+        "name": "Amarillo",
+        "id": "2433d9e8-07bb-40c4-9fcf-098fd238e129"
+      },
+      {
+        "rbg": "#28af45",
+        "name": "Verde",
+        "id": "fd07d30b-e9e5-4fca-8f22-ae0291337a67"
+      },
+      {
+        "rbg": "#b92828",
+        "name": "Rojo",
+        "id": "2433d9e8-07bb-40c4-9fcf-098fd238e129"
+      }
+    ]
+  },
+  {
+    "name": "Falta Corta",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate excepturi ad in? Minima eos culpa, facilis a voluptates quibusdam quasi.",
+    "image": "FaltaCorta.jpg",
+    "id": "934c3049-bb9a-4104-a0a5-718d0a3ee6b5",
+    "colors": [
+      {
+        "rbg": "#2889af",
+        "name": "Azul",
+        "id": "2a0012c0-52d7-4019-b7f8-917481a61381"
+      },
+      {
+        "rbg": "#b92828",
+        "name": "Rojo",
+        "id": "2433d9e8-07bb-40c4-9fcf-098fd238e129"
+      },
+      {
+        "rbg": "#7827c4",
+        "name": "Morado",
+        "id": "0460c78c-f1fb-4c3f-8b5f-ea0d1aa3bb2d"
+      }
+    ]
+  },
+  {
+    "name": "Falda Larga",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos facere dolor dignissimos ipsum id ipsam, accusantium porro autem eius quidem?",
+    "image": "FaldaLarga.jpg",
+    "id": "955a3c53-888a-447e-93cf-c3381773be1f",
+    "colors": [
+      {
+        "rbg": "#d6d327",
+        "name": "Amarillo",
+        "id": "2433d9e8-07bb-40c4-9fcf-098fd238e129"
+      },
+      {
+        "rbg": "#28af45",
+        "name": "Verde",
+        "id": "fd07d30b-e9e5-4fca-8f22-ae0291337a67"
+      }
+    ]
+  },
+  {
+    "name": "Pantalón",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi quisquam pariatur cumque ipsa necessitatibus est eveniet consequatur voluptatem perspiciatis tempora.",
+    "image": "Pantalon.jpg",
+    "id": "163bfe17-41d5-40ed-af0f-724debec18e5",
+    "colors": [
+      {
+        "rbg": "#2889af",
+        "name": "Azul",
+        "id": "2a0012c0-52d7-4019-b7f8-917481a61381"
+      },
+      {
+        "rbg": "#28af45",
+        "name": "Verde",
+        "id": "fd07d30b-e9e5-4fca-8f22-ae0291337a67"
+      },
+      {
+        "rbg": "#b92828",
+        "name": "Rojo",
+        "id": "2433d9e8-07bb-40c4-9fcf-098fd238e129"
+      },
+      {
+        "rbg": "#d6d327",
+        "name": "Amarillo",
+        "id": "2433d9e8-07bb-40c4-9fcf-098fd238e129"
+      },
+      {
+        "rbg": "#7827c4",
+        "name": "Morado",
+        "id": "0460c78c-f1fb-4c3f-8b5f-ea0d1aa3bb2d"
+      }
+    ]
+  },
+  {
+    "name": "Polo",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor a magnam repellendus hic? Iusto optio qui, omnis molestiae aliquid in.",
+    "image": "Polo.jpg",
+    "id": "3fc273d8-f019-43e8-99e3-9b5c20f848d4",
+    "colors": [
+      {
+        "rbg": "#2889af",
+        "name": "Azul",
+        "id": "2a0012c0-52d7-4019-b7f8-917481a61381"
+      }
+    ]
+  },
+  {
+    "name": "Sudadera.",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Id earum pariatur temporibus nobis consectetur, repellat numquam quisquam velit exercitationem cupiditate!",
+    "image": "Sudadera.jpg",
+    "id": "dbc27e9e-ea6e-4732-9e9e-d8d9490b33d9",
+    "colors": [
+      {
+        "rbg": "#28af45",
+        "name": "Verde",
+        "id": "fd07d30b-e9e5-4fca-8f22-ae0291337a67"
+      },
+      {
+        "rbg": "#7827c4",
+        "name": "Morado",
+        "id": "0460c78c-f1fb-4c3f-8b5f-ea0d1aa3bb2d"
+      }
+    ]
+  },
+  {
+    "name": "Zapatos",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda suscipit unde autem voluptate cum blanditiis mollitia deserunt! Autem, perferendis laudantium.",
+    "image": "Zapatos.jpg",
+    "id": "0a5bef9f-3201-4443-b82a-6c7c51c6b1cc",
+    "colors": [
+      {
+        "rbg": "#2889af",
+        "name": "Azul",
+        "id": "2a0012c0-52d7-4019-b7f8-917481a61381"
+      },
+      {
+        "rbg": "#b92828",
+        "name": "Rojo",
+        "id": "2433d9e8-07bb-40c4-9fcf-098fd238e129"
+      },
+      {
+        "rbg": "#d6d327",
+        "name": "Amarillo",
+        "id": "2433d9e8-07bb-40c4-9fcf-098fd238e129"
+      },
+      {
+        "rbg": "#7827c4",
+        "name": "Morado",
+        "id": "0460c78c-f1fb-4c3f-8b5f-ea0d1aa3bb2d"
+      }
+    ]
+  },
+  {
+    "name": "Vestido Corto",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo quisquam necessitatibus cumque dolorem explicabo incidunt suscipit temporibus alias ab pariatur?",
+    "image": "VestidoCorto.jpg",
+    "id": "831f639e-99c0-4ad6-a437-c50350ab3b38",
+    "colors": [
+      {
+        "rbg": "#28af45",
+        "name": "Verde",
+        "id": "fd07d30b-e9e5-4fca-8f22-ae0291337a67"
+      },
+      {
+        "rbg": "#b92828",
+        "name": "Rojo",
+        "id": "2433d9e8-07bb-40c4-9fcf-098fd238e129"
+      },
+      {
+        "rbg": "#d6d327",
+        "name": "Amarillo",
+        "id": "2433d9e8-07bb-40c4-9fcf-098fd238e129"
+      }
+    ]
+  }
+]

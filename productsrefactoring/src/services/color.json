@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Azul",
+        "selected": false
+    },
+    {
+        "name": "Verde",
+        "selected": false
+    },
+    {
+        "name": "Rojo",
+        "selected": false
+    },
+    {
+        "name": "Amarillo",
+        "selected": false
+    },
+    {
+        "name": "Morado",
+        "selected": false
+    },
+    {
+        "name": "Todos",
+        "selected": true
+    }
+]

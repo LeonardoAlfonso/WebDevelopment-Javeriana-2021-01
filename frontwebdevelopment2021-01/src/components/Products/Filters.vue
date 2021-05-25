@@ -11,36 +11,13 @@
 </template>
 
 <script>
+import colors from "../../services/color.json"
+
 export default {
   name: "Filters",
   data() {
     return {
-      filters: [
-        {
-          color: "Azul",
-          selected: false
-        },
-        {
-          color: "Verde",
-          selected: false
-        },
-        {
-          color: "Rojo",
-          selected: false
-        },
-        {
-          color: "Amarillo",
-          selected: false
-        },
-        {
-          color: "Morado",
-          selected: false
-        },
-        {
-          color: "Todos",
-          selected: true
-        }
-      ]
+      filters: null
     }
   },
   methods: {
@@ -55,7 +32,15 @@ export default {
     },
     isSelected(filter) {
       return filter.selected
+    },
+    loadColors() {
+      return new Promise(resolve => {
+        resolve(colors)
+      });
     }
+  },
+  async created() {
+    this.filters = await this.loadColors()
   }
 }
 </script>
