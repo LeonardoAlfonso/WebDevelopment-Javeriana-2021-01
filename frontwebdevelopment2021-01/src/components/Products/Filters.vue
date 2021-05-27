@@ -2,11 +2,13 @@
 <section class="filters">
   <ul class="filters-tags">
     <li v-for="filter in filters" :key="filter.color" class="toggle"
-        :class="{ 'isSelected' : filter.selected }" @click="activeFilter(filter)">
+        :class="{ 'isSelected' : filter.selected }"
+        @click="activeFilter(filter)">
       <a>{{ filter.color }}</a>
     </li>
   </ul>
-  <input id="search" type="search" placeholder="Buscar..." class="search" @input="handleSearch">
+  <input id="search" type="search" placeholder="Buscar..."
+         class="search" @input="handleSearch">
 </section>
 </template>
 
@@ -77,7 +79,6 @@ export default {
 .toggle:hover {
   background: rgba(0, 0, 0, 0.1);
 }
-
 
 .search {
   flex-basis: 0;

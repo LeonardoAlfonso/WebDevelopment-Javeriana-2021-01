@@ -1,77 +1,98 @@
 <template>
   <section class="products">
     <h2 class="products-title">Productos Disponibles</h2>
-<!--    <Filters @filter="applyFilter"-->
-<!--             @search="searcher"></Filters>-->
-    <Filters @color="alertColor"
-            v-model:search="filter"></Filters>
+<!--    @color="alertColor"-->
+    <Filters  v-model:search="search"></Filters>
     <div class="products-collection">
-<!--      <ProductCard v-for="product in filteredProducts" :key="product.name" :product="product"/>-->
+      <ProductCard
+        v-for="product in products"
+        :key="product.name"
+        :product="product"
+      />
     </div>
   </section>
 </template>
 
 <script lang="ts">
-
-import { defineComponent } from "vue";
+import { defineComponent, Ref, ref, onMounted  } from "vue";
 import Filters from "../components/Products/Filters.vue";
-// import ProductCard from "../components/Products/ProductCard";
-// import dataProducts from "../services/products.json"
+import ProductCard from "../components/Products/ProductCard.vue";
+import dataProducts from "../services/products.json";
+import { Product } from "@/types/Product";
 
 export default defineComponent({
   name: "Products",
   components: {
     Filters,
-    // ProductCard
+    ProductCard,
   },
-  data() {
-    return {
-      products: [],
-      productSearch: "",
-      filter: "Todos"
-    }
-  },
-  methods: {
-    alertColor(color: string) {
-      alert(color)
-    }
-  }
+  setup() {
+    const products : Ref<Product[]> = ref([]);
+    const search: Ref<string> = ref("")
 
-  // async created() {
-  //   this.products = await this.getProducts();
-  // },
-  // methods: {
-  //   applyFilter(event) {
-  //     this.filter = event
-  //   },
-  //   searcher(event) {
-  //     this.productSearch = event
-  //   },
-  //   getProducts()  {
-  //     return new Promise(resolve => {
-  //       resolve(dataProducts)
-  //     });
-  //   },
-  // },
-  // computed: {
-  //   filteredProducts() {
-  //     let filterProducts = this.products
-  //
-  //     if (this.productSearch !== null || this.productSearch !== ""){
-  //       filterProducts = filterProducts.filter(product => {
-  //         return product.name.toLowerCase().includes(this.productSearch.toLowerCase())
-  //       })
-  //     }
-  //
-  //     if (this.filter !== "Todos")
-  //     {
-  //       filterProducts = filterProducts.filter(product => {
-  //         return product.colors.some(color => color.name === this.filter)
-  //       })
-  //     }
-  //     return filterProducts
-  //   }
-  // },
+
+    onMounted(async () => {
+      products.value = await getProducts();
+    })
+
+    async function getProducts() : Promise<Product[]>{
+      return new Promise((resolve) => {
+        resolve(dataProducts);
+      });
+    }
+
+
+
+
+    return { products, search }
+  },
+//
+//
+//
+//   data() {
+//     return {
+//       products: [],
+//       productSearch: "",
+//       filter: "Todos",
+//     };
+//   },
+//   async created() {
+//     this.products = await this.getProducts();
+//   },
+//   methods: {
+//     applyFilter(event : string) {
+//       this.filter = event;
+//     },
+//     searcher(event) {
+//       this.productSearch = event;
+//     },
+//   }
+//     getProducts() {
+//       return new Promise((resolve) => {
+//         resolve(dataProducts);
+//       });
+//     },
+//   },
+//   computed: {
+//     filteredProducts() {
+//       let filterProducts = this.products;
+//
+//       if (this.productSearch !== null || this.productSearch !== "") {
+//         filterProducts = filterProducts.filter((product) => {
+//           return product.name
+//             .toLowerCase()
+//             .includes(this.productSearch.toLowerCase());
+//         });
+//       }
+//
+//       if (this.filter !== "Todos") {
+//         filterProducts = filterProducts.filter((product) => {
+//           return product.colors.some((color) => color.name === this.filter);
+//         });
+//       }
+//       return filterProducts;
+//     },
+//   },
 });
 </script>
 

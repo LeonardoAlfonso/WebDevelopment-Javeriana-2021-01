@@ -1,17 +1,17 @@
 <template>
   <article class="card">
     <a href="#">
-      <img :src="product.image" alt="" class="card-img" />
+      <img :src="actualProduct.image" alt="" class="card-img" />
       <div class="card-info">
-        <h3>{{ product.name }}</h3>
-        <p class="card-lead">{{ product.description }}</p>
+        <h3>{{ actualProduct.name }}</h3>
+        <p class="card-lead">{{ actualProduct.description }}</p>
       </div>
     </a>
   </article>
 </template>
 
 <script lang="ts">
-import { defineComponent, Ref, ref } from "vue";
+import { defineComponent, Ref, ref, onBeforeMount } from "vue";
 import { Product } from "@/types/Product";
 
 export default defineComponent({
@@ -19,16 +19,18 @@ export default defineComponent({
   props: {
     product: {
       type: Object as () => Product,
-      required: true
+      required: true,
     },
   },
   setup(props) {
-    let productCard: Ref<Product> = ref(props.product);
-    productCard.value.image = require(`@/assets/${props.product.image}`);
+    const productCard: Ref<Product | null> = ref(null);
 
-    return {
-      productCard
-    };
+    onBeforeMount(() => {
+      productCard.value = Object.assign({}, props.product);
+      productCard.value.image = require(`@/assets/${productCard.value.image}`);
+    });
+
+    return { actualProduct: productCard };
   },
 });
 </script>

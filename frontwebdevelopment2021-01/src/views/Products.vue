@@ -4,7 +4,8 @@
     <Filters @filter="applyFilter"
             @search="searcher"></Filters>
     <div class="products-collection">
-      <ProductCard v-for="product in filteredProducts" :key="product.name" :product="product"/>
+      <ProductCard v-for="product in filteredProducts"
+                   :key="product.name" :product="product"/>
     </div>
   </section>
 </template>
