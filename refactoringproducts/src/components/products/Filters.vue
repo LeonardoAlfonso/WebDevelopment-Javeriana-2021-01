@@ -21,29 +21,19 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, Ref, ref, onMounted } from "vue";
+import { defineComponent } from "vue";
 import { Color } from "@/types/Color";
-import colorsApi from "@/services/colors.json";
 
 export default defineComponent({
   name: "Filters",
+  props: {
+    colors: {
+      type: Array as () => Color[],
+      required: true,
+    },
+  },
   setup(props, context) {
-    const colors: Ref<Color[]> = ref([]);
-
-    onMounted(async () => {
-      colors.value = await loadColors();
-    });
-
-    async function loadColors(): Promise<Color[]> {
-      return new Promise<Color[]>((resolve) => {
-        resolve(colorsApi);
-      });
-    }
-
     function changeFilter(selectedColor: Color) {
-      colors.value.forEach((color) => {
-        color.selected = color.color === selectedColor.color;
-      });
       context.emit("color", selectedColor.color);
     }
 
@@ -51,7 +41,7 @@ export default defineComponent({
       context.emit("update:search", event.target.value);
     }
 
-    return { colors, changeFilter, handleSearch };
+    return { changeFilter, handleSearch };
   },
 });
 </script>

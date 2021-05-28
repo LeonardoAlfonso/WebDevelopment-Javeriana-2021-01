@@ -1,7 +1,11 @@
 <template>
   <section class="products">
     <h2 class="products-title">Productos Disponibles</h2>
-    <Filters @color="setFilterColor" v-model:search="search"></Filters>
+    <Filters
+      @color="setFilterColor"
+      v-model:search="search"
+      :colors="colorsFilters"
+    ></Filters>
     <div class="products-collection">
       <ProductCard
         v-for="product in filteredProducts"
@@ -15,11 +19,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, Ref, ref, onMounted, computed } from "vue";
+import { defineComponent, Ref, ref, computed } from "vue";
 import Filters from "@/components/products/Filters.vue";
 import ProductCard from "@/components/products/ProductCard.vue";
 import { Product } from "@/types/Product";
-import productsApi from "@/services/products.json";
+import { Color } from "@/types/Color";
+import { ProductColor } from "@/types/ProductColor";
+import { useProducts } from "@/uses/useProducts";
 
 export default defineComponent({
   name: "Products",
@@ -28,16 +34,24 @@ export default defineComponent({
     ProductCard,
   },
   setup() {
-    const products: Ref<Product[]> = ref([]);
+    const { products } = useProducts();
     const search: Ref<string> = ref("");
     const color: Ref<string> = ref("Todos");
+    const colors: Ref<Color[]> = ref([]);
 
-    onMounted(async () => {
-      products.value = await getProducts();
+    let colorsFilters = computed({
+      get() {
+        return colors.value.length === 0
+          ? getColorsFilters(products.value)
+          : colors.value;
+      },
+      set(newValue: Color[]) {
+        colors.value = newValue;
+      },
     });
 
     const filteredProducts = computed(() => {
-      let finalProducts = products.value
+      let finalProducts = products.value;
       if (search.value !== "") {
         finalProducts = finalProducts.filter((product) => {
           return product.name.toLowerCase().includes(search.value);
@@ -55,17 +69,37 @@ export default defineComponent({
       return finalProducts;
     });
 
-    async function getProducts(): Promise<Product[]> {
-      return new Promise((resolve) => {
-        resolve(productsApi);
-      });
+    function getColorsFilters(products: Product[]): Color[] {
+      let initialProductColors: ProductColor[] = [];
+      let colors: Color[] = products
+        .flatMap((product) => product.colors)
+        .reduce((unique, productColor) => {
+          if (!unique.some((item) => item.name === productColor.name)) {
+            unique.push(productColor);
+          }
+          return unique;
+        }, initialProductColors)
+        .map((productColor) => {
+          return {
+            color: productColor.name,
+            selected: false,
+          };
+        });
+
+      colors.push({ color: "Todos", selected: true });
+      return colors;
     }
 
     function setFilterColor(selectedColor: string) {
       color.value = selectedColor;
+      colors.value = colorsFilters.value;
+      colors.value.forEach((color) => {
+        color.selected = color.color === selectedColor;
+      });
+      colorsFilters.value = colors.value;
     }
 
-    return { search, setFilterColor, filteredProducts };
+    return { search, setFilterColor, filteredProducts, colorsFilters };
   },
 });
 </script>
