@@ -26,6 +26,7 @@ import { Color } from "@/types/Color";
 import { ProductColor } from "@/types/ProductColor";
 import { useProducts } from "@/uses/useProducts";
 import { useSearch } from "@/uses/useSearch";
+import { useFilters } from "@/uses/useFilters";
 
 export default defineComponent({
   name: "Products",
@@ -36,8 +37,7 @@ export default defineComponent({
   setup() {
     const { products } = useProducts();
     const { setSearchQuery, searchByName } = useSearch();
-
-    const color: Ref<string> = ref("Todos");
+    const { setColorSelected, searchByColor, getColorsFilters, modifyFilters } = useFilters();
     const colors: Ref<Color[]> = ref([]);
 
     let colorsFilters = computed({
@@ -52,47 +52,12 @@ export default defineComponent({
     });
 
     const filteredProducts = computed(() => {
-      let finalProducts = searchByName(products.value);
-
-      if (color.value !== "Todos") {
-        finalProducts = finalProducts.filter((product) => {
-          return product.colors.some(
-            (productColor) => productColor.name === color.value
-          );
-        });
-      }
-
-      return finalProducts;
+      return searchByColor(searchByName(products.value));
     });
 
-    function getColorsFilters(products: Product[]): Color[] {
-      let initialProductColors: ProductColor[] = [];
-      let colors: Color[] = products
-        .flatMap((product) => product.colors)
-        .reduce((unique, productColor) => {
-          if (!unique.some((item) => item.name === productColor.name)) {
-            unique.push(productColor);
-          }
-          return unique;
-        }, initialProductColors)
-        .map((productColor) => {
-          return {
-            color: productColor.name,
-            selected: false,
-          };
-        });
-
-      colors.push({ color: "Todos", selected: true });
-      return colors;
-    }
-
     function setFilterColor(selectedColor: string) {
-      color.value = selectedColor;
-      colors.value = colorsFilters.value;
-      colors.value.forEach((color) => {
-        color.selected = color.color === selectedColor;
-      });
-      colorsFilters.value = colors.value;
+      setColorSelected(selectedColor);
+      colorsFilters.value = modifyFilters(colorsFilters.value)
     }
 
     return { setSearchQuery, setFilterColor, filteredProducts, colorsFilters };
