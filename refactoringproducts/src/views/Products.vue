@@ -3,7 +3,7 @@
     <h2 class="products-title">Productos Disponibles</h2>
     <Filters
       @color="setFilterColor"
-      v-model:search="search"
+      @search="setSearchQuery"
       :colors="colorsFilters"
     ></Filters>
     <div class="products-collection">
@@ -13,7 +13,6 @@
         :product="product"
       ></ProductCard>
     </div>
-    <p>{{ search }}</p>
   </section>
   <p>Esta es la vista de productos, en construcción.</p>
 </template>
@@ -26,6 +25,7 @@ import { Product } from "@/types/Product";
 import { Color } from "@/types/Color";
 import { ProductColor } from "@/types/ProductColor";
 import { useProducts } from "@/uses/useProducts";
+import { useSearch } from "@/uses/useSearch";
 
 export default defineComponent({
   name: "Products",
@@ -35,7 +35,8 @@ export default defineComponent({
   },
   setup() {
     const { products } = useProducts();
-    const search: Ref<string> = ref("");
+    const { setSearchQuery, searchByName } = useSearch();
+
     const color: Ref<string> = ref("Todos");
     const colors: Ref<Color[]> = ref([]);
 
@@ -51,12 +52,7 @@ export default defineComponent({
     });
 
     const filteredProducts = computed(() => {
-      let finalProducts = products.value;
-      if (search.value !== "") {
-        finalProducts = finalProducts.filter((product) => {
-          return product.name.toLowerCase().includes(search.value);
-        });
-      }
+      let finalProducts = searchByName(products.value);
 
       if (color.value !== "Todos") {
         finalProducts = finalProducts.filter((product) => {
@@ -99,7 +95,7 @@ export default defineComponent({
       colorsFilters.value = colors.value;
     }
 
-    return { search, setFilterColor, filteredProducts, colorsFilters };
+    return { setSearchQuery, setFilterColor, filteredProducts, colorsFilters };
   },
 });
 </script>

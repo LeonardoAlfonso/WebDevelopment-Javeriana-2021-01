@@ -38,7 +38,7 @@ export default defineComponent({
     }
 
     function handleSearch(event: any) {
-      context.emit("update:search", event.target.value);
+      context.emit("search", event.target.value);
     }
 
     return { changeFilter, handleSearch };
