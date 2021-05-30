@@ -21,9 +21,7 @@
 import { defineComponent, Ref, ref, computed } from "vue";
 import Filters from "@/components/products/Filters.vue";
 import ProductCard from "@/components/products/ProductCard.vue";
-import { Product } from "@/types/Product";
 import { Color } from "@/types/Color";
-import { ProductColor } from "@/types/ProductColor";
 import { useProducts } from "@/uses/useProducts";
 import { useSearch } from "@/uses/useSearch";
 import { useFilters } from "@/uses/useFilters";
